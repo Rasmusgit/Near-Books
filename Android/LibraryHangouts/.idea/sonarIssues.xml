@@ -13,6 +13,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/base/build/intermediates/manifests/full/feature/debug/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/feature/build.gradle">
           <value>
             <set />
@@ -29,6 +34,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/feature/src/main/java/com/group8/ciu196/libraryhangouts/feature/MyApplication.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../library-experience-android-39o_1538990816593/library-experience-android-39o_1538990816593/Proximity/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../library-experience-android-39o_1538990816593/library-experience-android-39o_1538990816593/Proximity/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../library-experience-android-39o_1538990816593/library-experience-android-39o_1538990816593/Proximity/app/src/main/AndroidManifest.xml">
           <value>
             <set />
           </value>
