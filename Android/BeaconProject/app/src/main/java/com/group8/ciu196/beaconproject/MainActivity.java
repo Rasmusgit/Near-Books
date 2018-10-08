@@ -1,8 +1,10 @@
 package com.group8.ciu196.beaconproject;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.LinearLayout;
 
 import com.estimote.mustard.rx_goodness.rx_requirements_wizard.Requirement;
 import com.estimote.mustard.rx_goodness.rx_requirements_wizard.RequirementsWizardFactory;
@@ -30,30 +32,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final LinearLayout root=(LinearLayout)findViewById(R.id.root);
+        root.setBackgroundColor(Color.WHITE);
+
         EstimoteCloudCredentials cloudCredentials =
                 new EstimoteCloudCredentials("library-experience-android-39o", "3ef92167fc706b44e652a4fc6af53498");
 
 
         this.proximityObserver =
-                new ProximityObserverBuilder(getApplicationContext(), cloudCredentials).withLowPowerMode()
+                new ProximityObserverBuilder(getApplicationContext(), cloudCredentials)
                         .onError(new Function1<Throwable, Unit>() {
                             @Override
                             public Unit invoke(Throwable throwable) {
                                 Log.e("app", "proximity observer error: " + throwable);
                                 return null;
                             }
-                        })
-                        .withBalancedPowerMode()
-                        .build();
+                        }).withLowLatencyPowerMode().build();
 
-        final ProximityZone zone = new ProximityZoneBuilder()
-                .forTag("entrance floor")
-                .inNearRange()
+
+
+        final ProximityZone enterance = new ProximityZoneBuilder()
+                .forTag("entrance floor").inCustomRange(0.1)
                 .onEnter(new Function1<ProximityZoneContext, Unit>() {
                     @Override
                     public Unit invoke(ProximityZoneContext context) {
-                        String event= context.getAttachments().get("event");
-                        Log.d("app", "Detected event  " + event + "");
+                        String event= context.getAttachments().get("Event");
+
+                        Log.d("app", "Welcome to the library  " + event + "");
+                        Log.d("app","device id " + context.getDeviceId() + " attatchment " + context.getTag() + " Event: " + event);
+
+                        if(event != null) {
+                            root.setBackgroundColor(Color.parseColor("#B8D4B5"));
+                        }
                         return null;
                     }
                 })
@@ -61,16 +71,37 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public Unit invoke(ProximityZoneContext context) {
                         Log.d("app", "Bye bye, come again!");
+                        root.setBackgroundColor(Color.WHITE);
                         return null;
                     }
-                }).onContextChange(new Function1<Set<? extends ProximityZoneContext>, Unit>() {
+                })
+                .build();
+
+        final ProximityZone books = new ProximityZoneBuilder()
+                .forTag("Books").inCustomRange(0.1)
+                .onEnter(new Function1<ProximityZoneContext, Unit>() {
                     @Override
-                    public Unit invoke(Set<? extends ProximityZoneContext> contexts) {
-                        List<String> deskOwners = new ArrayList<>();
-                        for (ProximityZoneContext context : contexts) {
-                            deskOwners.add(context.getAttachments().get("Event"));
+                    public Unit invoke(ProximityZoneContext context) {
+                        String event= context.getAttachments().get("Book");
+
+                        Log.d("app","device id " + context.getDeviceId() + " attatchment " + context.getTag() + " Event: " + event);
+                        //context.getAttachments().values();
+                        /*while(context.getAttachments().keySet().iterator().hasNext()){
+                            Log.d("app", context.getAttachments().keySet().iterator().next());
+                        }*/
+
+                        Log.d("app", "Welcome to the books!  " + event + "");
+                        if(event != null) {
+                            root.setBackgroundColor(Color.parseColor("#85c2e5"));
                         }
-                        Log.d("app", "In range of desks: " + deskOwners);
+                        return null;
+                    }
+                })
+                .onExit(new Function1<ProximityZoneContext, Unit>() {
+                    @Override
+                    public Unit invoke(ProximityZoneContext context) {
+                        Log.d("app", "Bye bye, come again!");
+                        root.setBackgroundColor(Color.WHITE);
                         return null;
                     }
                 })
@@ -84,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                         new Function0<Unit>() {
                             @Override public Unit invoke() {
                                 Log.d("app", "requirements fulfilled");
-                                proximityObserver.startObserving(zone);
+                                proximityObserver.startObserving(enterance, books);
                                 return null;
                             }
                         },
