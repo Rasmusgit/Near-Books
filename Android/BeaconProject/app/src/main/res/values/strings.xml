@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">BeaconProject</string>
     <string name="entrence">Entrance</string>
+    <string name="featured">Featured</string>
 </resources>
