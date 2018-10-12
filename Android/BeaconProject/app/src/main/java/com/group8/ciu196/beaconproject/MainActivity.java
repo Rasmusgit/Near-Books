@@ -3,6 +3,7 @@ package com.group8.ciu196.beaconproject;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,8 +37,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final LinearLayout root=(LinearLayout)findViewById(R.id.root);
-        root.setBackgroundColor(Color.WHITE);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+
+        //final LinearLayout root=(LinearLayout)findViewById(R.id.root);
+        //root.setBackgroundColor(Color.WHITE);
 
         final TextView textView = (TextView) findViewById(R.id.textView);
 
@@ -70,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
                             textView.setText("Enter beacon " + event);
 
-                            root.setBackgroundColor(Color.parseColor("#B8D4B5"));
+                            //root.setBackgroundColor(Color.parseColor("#B8D4B5"));
                             mint = true;
 
                             return null;
@@ -103,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
                             Log.d("app", "Welcome to the books!  " + event + "");
 
-                            root.setBackgroundColor(Color.parseColor("#85c2e5"));
+                            //root.setBackgroundColor(Color.parseColor("#85c2e5"));
                             textView.setText("Enter beacon " + event);
                             blue = true;
 
