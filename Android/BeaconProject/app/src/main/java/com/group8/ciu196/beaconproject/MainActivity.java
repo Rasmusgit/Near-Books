@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private ProximityObserver proximityObserver;
     private boolean mint = false;
     private boolean blue = false;
+    private final boolean ESTIMOTEMODE = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,113 +44,115 @@ public class MainActivity extends AppCompatActivity {
         EstimoteCloudCredentials cloudCredentials =
                 new EstimoteCloudCredentials("library-experience-android-39o", "3ef92167fc706b44e652a4fc6af53498");
 
+        if(ESTIMOTEMODE) {
+
+            this.proximityObserver =
+                    new ProximityObserverBuilder(getApplicationContext(), cloudCredentials)
+                            .onError(new Function1<Throwable, Unit>() {
+                                @Override
+                                public Unit invoke(Throwable throwable) {
+                                    Log.e("app", "proximity observer error: " + throwable);
+                                    return null;
+                                }
+                            }).withLowLatencyPowerMode().build();
 
 
-        this.proximityObserver =
-                new ProximityObserverBuilder(getApplicationContext(), cloudCredentials)
-                        .onError(new Function1<Throwable, Unit>() {
-                            @Override
-                            public Unit invoke(Throwable throwable) {
-                                Log.e("app", "proximity observer error: " + throwable);
-                                return null;
-                            }
-                        }).withLowLatencyPowerMode().build();
+            final ProximityZone enterance = new ProximityZoneBuilder()
+                    .forTag("Cafeteria").inNearRange()
+                    .onEnter(new Function1<ProximityZoneContext, Unit>() {
+                        @Override
+                        public Unit invoke(ProximityZoneContext context) {
+                            String event = context.getAttachments().get("Event");
+                            String event2 = context.getAttachments().get("Book");
 
+                            Log.d("app", "Welcome to the library  " + event + "");
+                            Log.d("app", "device id " + context.getDeviceId() + " attatchment " + context.getTag() + " Event: " + event + "Event2: " + event2);
 
+                            textView.setText("Enter beacon " + event);
 
-        final ProximityZone enterance = new ProximityZoneBuilder()
-                .forTag("Cafeteria").inNearRange()
-                .onEnter(new Function1<ProximityZoneContext, Unit>() {
-                    @Override
-                    public Unit invoke(ProximityZoneContext context) {
-                        String event= context.getAttachments().get("Event");
-                        String event2= context.getAttachments().get("Book");
+                            root.setBackgroundColor(Color.parseColor("#B8D4B5"));
+                            mint = true;
 
-                        Log.d("app", "Welcome to the library  " + event + "");
-                        Log.d("app","device id " + context.getDeviceId() + " attatchment " + context.getTag() + " Event: " + event  + "Event2: " + event2);
+                            return null;
+                        }
+                    })
+                    .onExit(new Function1<ProximityZoneContext, Unit>() {
+                        @Override
+                        public Unit invoke(ProximityZoneContext context) {
+                            Log.d("app", "Bye bye, come again!");
+                            //root.setBackgroundColor(Color.WHITE);
+                            textView.setText("Exit beacon mint");
+                            mint = false;
+                            return null;
+                        }
+                    })
+                    .build();
 
-                        textView.setText("Enter beacon " + event);
+            final ProximityZone books = new ProximityZoneBuilder()
+                    .forTag("History").inNearRange()
+                    .onEnter(new Function1<ProximityZoneContext, Unit>() {
+                        @Override
+                        public Unit invoke(ProximityZoneContext context) {
+                            String event = context.getAttachments().get("Book");
 
-                        root.setBackgroundColor(Color.parseColor("#B8D4B5"));
-                        mint = true;
-
-                        return null;
-                    }
-                })
-                .onExit(new Function1<ProximityZoneContext, Unit>() {
-                    @Override
-                    public Unit invoke(ProximityZoneContext context) {
-                        Log.d("app", "Bye bye, come again!");
-                        //root.setBackgroundColor(Color.WHITE);
-                        textView.setText("Exit beacon mint");
-                        mint = false;
-                        return null;
-                    }
-                })
-                .build();
-
-        final ProximityZone books = new ProximityZoneBuilder()
-                .forTag("History").inNearRange()
-                .onEnter(new Function1<ProximityZoneContext, Unit>() {
-                    @Override
-                    public Unit invoke(ProximityZoneContext context) {
-                        String event= context.getAttachments().get("Book");
-
-                        Log.d("app","device id " + context.getDeviceId() + " attatchment " + context.getTag() + " Event: " + event);
-                        //context.getAttachments().values();
+                            Log.d("app", "device id " + context.getDeviceId() + " attatchment " + context.getTag() + " Event: " + event);
+                            //context.getAttachments().values();
                         /*while(context.getAttachments().keySet().iterator().hasNext()){
                             Log.d("app", context.getAttachments().keySet().iterator().next());
                         }*/
 
-                        Log.d("app", "Welcome to the books!  " + event + "");
+                            Log.d("app", "Welcome to the books!  " + event + "");
 
-                                root.setBackgroundColor(Color.parseColor("#85c2e5"));
-                                textView.setText("Enter beacon " + event);
-                                blue = true;
-
-
-
-                        return null;
-                    }
-                })
-                .onExit(new Function1<ProximityZoneContext, Unit>() {
-                    @Override
-                    public Unit invoke(ProximityZoneContext context) {
-                        Log.d("app", "Bye bye, come again!");
-                        //root.setBackgroundColor(Color.WHITE);
-                        textView.setText("Exit beacon blue" );
-                        blue = false;
-                        return null;
-                    }
-                })
-                .build();
+                            root.setBackgroundColor(Color.parseColor("#85c2e5"));
+                            textView.setText("Enter beacon " + event);
+                            blue = true;
 
 
-        RequirementsWizardFactory
-                .createEstimoteRequirementsWizard()
-                .fulfillRequirements(this,
-                        // onRequirementsFulfilled
-                        new Function0<Unit>() {
-                            @Override public Unit invoke() {
-                                Log.d("app", "requirements fulfilled");
-                                proximityObserver.startObserving(enterance,books);
-                                return null;
-                            }
-                        },
-                        // onRequirementsMissing
-                        new Function1<List<? extends Requirement>, Unit>() {
-                            @Override public Unit invoke(List<? extends Requirement> requirements) {
-                                Log.e("app", "requirements missing: " + requirements);
-                                return null;
-                            }
-                        },
-                        // onError
-                        new Function1<Throwable, Unit>() {
-                            @Override public Unit invoke(Throwable throwable) {
-                                Log.e("app", "requirements error: " + throwable);
-                                return null;
-                            }
-                        });
+                            return null;
+                        }
+                    })
+                    .onExit(new Function1<ProximityZoneContext, Unit>() {
+                        @Override
+                        public Unit invoke(ProximityZoneContext context) {
+                            Log.d("app", "Bye bye, come again!");
+                            //root.setBackgroundColor(Color.WHITE);
+                            textView.setText("Exit beacon blue");
+                            blue = false;
+                            return null;
+                        }
+                    })
+                    .build();
 
+
+            RequirementsWizardFactory
+                    .createEstimoteRequirementsWizard()
+                    .fulfillRequirements(this,
+                            // onRequirementsFulfilled
+                            new Function0<Unit>() {
+                                @Override
+                                public Unit invoke() {
+                                    Log.d("app", "requirements fulfilled");
+                                    proximityObserver.startObserving(enterance, books);
+                                    return null;
+                                }
+                            },
+                            // onRequirementsMissing
+                            new Function1<List<? extends Requirement>, Unit>() {
+                                @Override
+                                public Unit invoke(List<? extends Requirement> requirements) {
+                                    Log.e("app", "requirements missing: " + requirements);
+                                    return null;
+                                }
+                            },
+                            // onError
+                            new Function1<Throwable, Unit>() {
+                                @Override
+                                public Unit invoke(Throwable throwable) {
+                                    Log.e("app", "requirements error: " + throwable);
+                                    return null;
+                                }
+                            });
+
+        }
     }
 }
