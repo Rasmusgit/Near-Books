@@ -15,6 +15,7 @@
         android:textColor="#fff"
         android:textSize="24dp"
         android:drawableLeft="@drawable/ic_location_on"
+        android:fontFamily="@font/futura_pt_medium"
         />
 
 

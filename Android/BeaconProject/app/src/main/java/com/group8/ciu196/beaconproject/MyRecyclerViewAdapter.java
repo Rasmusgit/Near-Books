@@ -29,6 +29,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.recyclerview_item, parent, false);
+
+
         return new ViewHolder(view);
     }
 
@@ -54,7 +56,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
         ViewHolder(View itemView) {
             super(itemView);
-            myView = itemView.findViewById(R.id.colorView);
+            myView = itemView.findViewById(R.id.imageView);
             myTextView = itemView.findViewById(R.id.tvAnimalName);
             itemView.setOnClickListener(this);
         }
@@ -62,6 +64,13 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         @Override
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            ResizeAnimation resizeAnimation = new ResizeAnimation(
+                    view,
+                    483,
+                    0
+            );
+            resizeAnimation.setDuration(1000);
+            view.startAnimation(resizeAnimation);
         }
     }
 

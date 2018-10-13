@@ -1,13 +1,18 @@
 package com.group8.ciu196.beaconproject;
 
 import android.graphics.Color;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -25,6 +30,7 @@ import com.estimote.proximity_sdk.api.ProximityObserverBuilder;
 import com.estimote.proximity_sdk.api.ProximityZone;
 import com.estimote.proximity_sdk.api.ProximityZoneBuilder;
 import com.estimote.proximity_sdk.api.ProximityZoneContext;
+import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
     private boolean blue = false;
     private final boolean ESTIMOTEMODE = false;
     private MyRecyclerViewAdapter adapter;
+    FragmentPagerAdapter adapterViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +60,13 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
 
         Window window = this.getWindow();
 
-// clear FLAG_TRANSLUCENT_STATUS flag:
+        // clear FLAG_TRANSLUCENT_STATUS flag:
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
-// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
-// finally change the color
+        // finally change the color
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorBlue));
 
 
@@ -79,7 +86,9 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         animalNames.add("Goat");
 
         // set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.rvAnimals);
+       /* RecyclerView recyclerView = findViewById(R.id.rvAnimals);
+
+
         LinearLayoutManager horizontalLayoutManager
                 = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(horizontalLayoutManager);
@@ -90,9 +99,52 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(horizontalLayoutManagaer);
 
+        SnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerView);*/
 
 
 
+        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
+
+        ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
+        vpPager.setClipToPadding(false);
+
+        vpPager.setOffscreenPageLimit(3);
+
+        vpPager.setPageMargin(0);
+
+        vpPager.setAdapter(adapterViewPager);
+
+        // Attach the page change listener inside the activity
+        vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            // This method will be invoked when a new page becomes selected.
+            @Override
+            public void onPageSelected(int position) {
+                Toast.makeText(MainActivity.this,
+                        "Selected page position: " + position, Toast.LENGTH_SHORT).show();
+            }
+
+            // This method will be invoked when the current page is scrolled
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                // Code goes here
+            }
+
+            // Called when the scroll state changes:
+            // SCROLL_STATE_IDLE, SCROLL_STATE_DRAGGING, SCROLL_STATE_SETTLING
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                // Code goes here
+            }
+        });
+
+
+
+        float pageWidth = adapterViewPager.getPageWidth(0);
+        int totalWidth = vpPager.getWidth();
+        Log.i("PAGER", "Page width: " + pageWidth + " Total width: " + totalWidth);
+        //int centerPadding = Math.round((totalWidth - pageWidth)/2);
 
         //final LinearLayout root=(LinearLayout)findViewById(R.id.root);
         //root.setBackgroundColor(Color.WHITE);

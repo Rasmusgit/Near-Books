@@ -2,4 +2,8 @@
     <string name="app_name">BeaconProject</string>
     <string name="entrence">Entrance</string>
     <string name="featured">Featured</string>
+    <string name="exampelText">Childhood friends Patricia Delfine and Laurence Armstead didn\'t expect to see each other again, after parting ways under mysterious circumstances during high school...</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
