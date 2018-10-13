@@ -3,9 +3,10 @@ package com.group8.ciu196.beaconproject;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
-public class SwipePagerAdapter extends FragmentPagerAdapter {
-    private static int NUM_ITEMS = 10;
+public class SwipePagerAdapter extends FragmentStatePagerAdapter {
+    private static int NUM_ITEMS = 5;
 
     public SwipePagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);

@@ -59,10 +59,6 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        toolbar = (Toolbar) findViewById(R.id.app_bar);
-        setSupportActionBar(toolbar);
-
         Window window = this.getWindow();
 
         // clear FLAG_TRANSLUCENT_STATUS flag:
@@ -73,6 +69,12 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
 
         // finally change the color
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorBlue));
+
+
+        toolbar = findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+
+
 
 
 
@@ -226,32 +228,34 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
         String location = view.getTag().toString();
         // Begin the transaction
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+
         switch (location){
             case "Architecture":
 
                 // finally change the color
                 getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPink));
-                TextView title = (TextView) findViewById(R.id.location_title);
+                TextView title = findViewById(R.id.location_title);
                 title.setText(R.string.architecture);
                 toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPink));
-                addFragment(getSupportFragmentManager(), shelfFragment, R.id.main_placeholder);
+                addFragment(getSupportFragmentManager(), ShelfFragment.newInstance("",""), R.id.main_placeholder);
                 break;
             case "Sci-fi":
                 // finally change the color
                 getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPurple));
-                TextView title2 = (TextView) findViewById(R.id.location_title);
+                TextView title2 = findViewById(R.id.location_title);
                 title2.setText(R.string.sci_fi);
                 toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPurple));
-                addFragment(getSupportFragmentManager(), shelfFragment, R.id.main_placeholder);
+                addFragment(getSupportFragmentManager(), ShelfFragment.newInstance("",""), R.id.main_placeholder);
                 break;
             case "Music":
                 // finally change the color
                 getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorGreen));
-                TextView title3 = (TextView) findViewById(R.id.location_title);
+                TextView title3 = findViewById(R.id.location_title);
                 title3.setText(R.string.music);
                 toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorGreen));
 
-                addFragment(getSupportFragmentManager(), shelfFragment, R.id.main_placeholder);
+                addFragment(getSupportFragmentManager(), ShelfFragment.newInstance("",""), R.id.main_placeholder);
 
                 break;
         }
@@ -261,20 +265,23 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
 
 
     public static void addFragment(FragmentManager fragmentManager, Fragment fragment, int id){
-        fragmentManager.beginTransaction().replace(id, fragment).addToBackStack().commit();
+        fragmentManager.beginTransaction().replace(id, fragment).addToBackStack(null).commit();
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorBlue));
-        TextView title = (TextView) findViewById(R.id.location_title);
-        title.setText(R.string.entrence);
-        toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorBlue));
-        if(getSupportFragmentManager().getBackStackEntryCount() == 0){
 
-        }
+
+    @Override
+    public void onBackPressed()
+    {
+        if(getFragmentManager().getBackStackEntryCount() > 0)
+            getFragmentManager().popBackStack();
+        else
+            getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorBlue));
+            TextView title = findViewById(R.id.location_title);
+            title.setText(R.string.entrence);
+            toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorBlue));
+            super.onBackPressed();
     }
 
 }

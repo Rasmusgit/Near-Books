@@ -38,7 +38,7 @@ public class BookFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.pager_fragment, container, false);
 
-        ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
+        ImageView imageView = view.findViewById(R.id.imageView);
 
         imageView.setImageResource(getImageId(getContext(),"book"+ page ));
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);

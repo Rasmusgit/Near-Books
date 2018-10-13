@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -24,7 +25,7 @@ import android.widget.Toast;
  */
 public class ShelfFragment extends Fragment {
 
-    FragmentPagerAdapter adapterViewPager;
+    FragmentStatePagerAdapter adapterViewPager;
 
 
     private OnFragmentInteractionListener mListener;
@@ -65,7 +66,7 @@ public class ShelfFragment extends Fragment {
 
         adapterViewPager = new SwipePagerAdapter(getFragmentManager());
 
-        ViewPager vpPager = (ViewPager) view.findViewById(R.id.vpPager);
+        ViewPager vpPager = view.findViewById(R.id.vpPager);
         vpPager.setClipToPadding(false);
 
         vpPager.setOffscreenPageLimit(3);
@@ -102,7 +103,9 @@ public class ShelfFragment extends Fragment {
 
         float pageWidth = adapterViewPager.getPageWidth(0);
         int totalWidth = vpPager.getWidth();
+        int count = adapterViewPager.getCount();
         Log.i("PAGER", "Page width: " + pageWidth + " Total width: " + totalWidth);
+        Log.i("PAGER", "Page count: " + count);
         //int centerPadding = Math.round((totalWidth - pageWidth)/2);
         //final LinearLayout root=(LinearLayout)findViewById(R.id.root);
         //root.setBackgroundColor(Color.WHITE);
@@ -150,4 +153,6 @@ public class ShelfFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
 }
