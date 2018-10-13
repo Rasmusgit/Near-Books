@@ -1,7 +1,11 @@
 package com.group8.ciu196.beaconproject;
 
 import android.graphics.Color;
+import android.net.Uri;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -40,14 +44,15 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
-public class MainActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener{
+public class MainActivity extends AppCompatActivity implements EntranceFragment.OnFragmentInteractionListener, ShelfFragment.OnFragmentInteractionListener{
 
     private ProximityObserver proximityObserver;
     private boolean mint = false;
     private boolean blue = false;
     private final boolean ESTIMOTEMODE = false;
-    private MyRecyclerViewAdapter adapter;
-    FragmentPagerAdapter adapterViewPager;
+    private Toolbar toolbar;
+    private ShelfFragment shelfFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         setContentView(R.layout.activity_main);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
+        toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
         Window window = this.getWindow();
@@ -70,84 +75,22 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorBlue));
 
 
-        // data to populate the RecyclerView with
-        ArrayList<Integer> viewColors = new ArrayList<>();
-        viewColors.add(Color.BLUE);
-        viewColors.add(Color.YELLOW);
-        viewColors.add(Color.MAGENTA);
-        viewColors.add(Color.RED);
-        viewColors.add(Color.BLACK);
-
-        ArrayList<String> animalNames = new ArrayList<>();
-        animalNames.add("Horse");
-        animalNames.add("Cow");
-        animalNames.add("Camel");
-        animalNames.add("Sheep");
-        animalNames.add("Goat");
-
-        // set up the RecyclerView
-       /* RecyclerView recyclerView = findViewById(R.id.rvAnimals);
 
 
-        LinearLayoutManager horizontalLayoutManager
-                = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(horizontalLayoutManager);
-        adapter = new MyRecyclerViewAdapter(this, viewColors, animalNames);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
-
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(horizontalLayoutManagaer);
-
-        SnapHelper snapHelper = new LinearSnapHelper();
-        snapHelper.attachToRecyclerView(recyclerView);*/
+        shelfFragment = ShelfFragment.newInstance("","");
 
 
 
-        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
 
-        ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
-        vpPager.setClipToPadding(false);
+        // Begin the transaction
+        /*FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        // Replace the contents of the container with the new fragment
+                ft.replace(R.id.main_placeholder, new EntranceFragment());
+        // or ft.add(R.id.your_placeholder, new FooFragment());
+        // Complete the changes added above
+        ft.commit();*/
 
-        vpPager.setOffscreenPageLimit(3);
-
-        vpPager.setPageMargin(0);
-
-        vpPager.setAdapter(adapterViewPager);
-
-        // Attach the page change listener inside the activity
-        vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-            // This method will be invoked when a new page becomes selected.
-            @Override
-            public void onPageSelected(int position) {
-                Toast.makeText(MainActivity.this,
-                        "Selected page position: " + position, Toast.LENGTH_SHORT).show();
-            }
-
-            // This method will be invoked when the current page is scrolled
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                // Code goes here
-            }
-
-            // Called when the scroll state changes:
-            // SCROLL_STATE_IDLE, SCROLL_STATE_DRAGGING, SCROLL_STATE_SETTLING
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                // Code goes here
-            }
-        });
-
-
-
-        float pageWidth = adapterViewPager.getPageWidth(0);
-        int totalWidth = vpPager.getWidth();
-        Log.i("PAGER", "Page width: " + pageWidth + " Total width: " + totalWidth);
-        //int centerPadding = Math.round((totalWidth - pageWidth)/2);
-
-        //final LinearLayout root=(LinearLayout)findViewById(R.id.root);
-        //root.setBackgroundColor(Color.WHITE);
+        addFragment(getSupportFragmentManager(),new EntranceFragment(), R.id.main_placeholder);
 
 
 
@@ -275,7 +218,65 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
 
 
     @Override
-    public void onItemClick(View view, int position) {
-        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
+    public void onFragmentInteraction(Uri uri) {
+
     }
+
+    public void changeFragment(View view) {
+        String location = view.getTag().toString();
+        // Begin the transaction
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        switch (location){
+            case "Architecture":
+
+                // finally change the color
+                getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPink));
+                TextView title = (TextView) findViewById(R.id.location_title);
+                title.setText(R.string.architecture);
+                toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPink));
+                addFragment(getSupportFragmentManager(), shelfFragment, R.id.main_placeholder);
+                break;
+            case "Sci-fi":
+                // finally change the color
+                getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPurple));
+                TextView title2 = (TextView) findViewById(R.id.location_title);
+                title2.setText(R.string.sci_fi);
+                toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPurple));
+                addFragment(getSupportFragmentManager(), shelfFragment, R.id.main_placeholder);
+                break;
+            case "Music":
+                // finally change the color
+                getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorGreen));
+                TextView title3 = (TextView) findViewById(R.id.location_title);
+                title3.setText(R.string.music);
+                toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorGreen));
+
+                addFragment(getSupportFragmentManager(), shelfFragment, R.id.main_placeholder);
+
+                break;
+        }
+    }
+
+
+
+
+    public static void addFragment(FragmentManager fragmentManager, Fragment fragment, int id){
+        fragmentManager.beginTransaction().replace(id, fragment).addToBackStack(null).commit();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorBlue));
+        TextView title = (TextView) findViewById(R.id.location_title);
+        title.setText(R.string.entrence);
+        toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorBlue));
+        if(getSupportFragmentManager().getBackStackEntryCount() == 0){
+
+        }
+    }
+
 }
+
+

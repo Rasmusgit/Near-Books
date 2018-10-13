@@ -1,20 +1,17 @@
 package com.group8.ciu196.beaconproject;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 
 /**
@@ -25,15 +22,14 @@ import java.util.ArrayList;
  * Use the {@link EntranceFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EntranceFragment extends Fragment implements EventRecyclerViewAdapter.ItemClickListener, BookRecyclerViewAdapter.ItemClickListener{
+public class ShelfFragment extends Fragment {
 
-    private EventRecyclerViewAdapter eventAdapter;
-    private BookRecyclerViewAdapter bookAdapter;
+    FragmentPagerAdapter adapterViewPager;
 
 
     private OnFragmentInteractionListener mListener;
 
-    public EntranceFragment() {
+    public ShelfFragment() {
         // Required empty public constructor
     }
 
@@ -46,8 +42,8 @@ public class EntranceFragment extends Fragment implements EventRecyclerViewAdapt
      * @return A new instance of fragment EntranceFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static EntranceFragment newInstance(String param1, String param2) {
-        EntranceFragment fragment = new EntranceFragment();
+    public static ShelfFragment newInstance(String param1, String param2) {
+        ShelfFragment fragment = new ShelfFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -56,56 +52,60 @@ public class EntranceFragment extends Fragment implements EventRecyclerViewAdapt
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_entrance, container, false);
 
 
-        // data to populate the RecyclerView with
-        ArrayList<Integer> viewColors = new ArrayList<>();
-        viewColors.add(Color.BLUE);
-        viewColors.add(Color.YELLOW);
-        viewColors.add(Color.MAGENTA);
-        viewColors.add(Color.RED);
-        viewColors.add(Color.BLACK);
 
-        ArrayList<String> animalNames = new ArrayList<>();
-        animalNames.add("Horse");
-        animalNames.add("Cow");
-        animalNames.add("Camel");
-        animalNames.add("Sheep");
-        animalNames.add("Goat");
+        View view = inflater.inflate(R.layout.fragment_shelf, container, false);
 
-        // set up the RecyclerView
-        RecyclerView rvEvents = view.findViewById(R.id.rvEvents);
-        RecyclerView rvBooks = view.findViewById(R.id.rvBooks);
+        adapterViewPager = new SwipePagerAdapter(getFragmentManager());
+
+        ViewPager vpPager = (ViewPager) view.findViewById(R.id.vpPager);
+        vpPager.setClipToPadding(false);
+
+        vpPager.setOffscreenPageLimit(3);
+
+        vpPager.setPageMargin(0);
+
+        vpPager.setAdapter(adapterViewPager);
+
+        // Attach the page change listener inside the activity
+        vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            // This method will be invoked when a new page becomes selected.
+            @Override
+            public void onPageSelected(int position) {
+                Toast.makeText(getContext(),
+                        "Selected page position: " + position, Toast.LENGTH_SHORT).show();
+            }
+
+            // This method will be invoked when the current page is scrolled
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                // Code goes here
+            }
+
+            // Called when the scroll state changes:
+            // SCROLL_STATE_IDLE, SCROLL_STATE_DRAGGING, SCROLL_STATE_SETTLING
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                // Code goes here
+            }
+        });
 
 
-        LinearLayoutManager horizontalLayoutManager
-                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        rvEvents.setLayoutManager(horizontalLayoutManager);
-        eventAdapter = new EventRecyclerViewAdapter(getContext(), viewColors, animalNames);
-        eventAdapter.setClickListener(this);
-        rvEvents.setAdapter(eventAdapter);
 
-
-        SnapHelper snapHelper = new LinearSnapHelper();
-        snapHelper.attachToRecyclerView(rvEvents);
-
-
-        LinearLayoutManager horizontalLayoutManagerBooks
-                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        rvBooks.setLayoutManager(horizontalLayoutManagerBooks);
-        bookAdapter = new BookRecyclerViewAdapter(getContext(), viewColors, animalNames);
-        bookAdapter.setClickListener(this);
-        rvBooks.setAdapter(bookAdapter);
-
-
-        SnapHelper snapHelperBooks = new LinearSnapHelper();
-        snapHelperBooks.attachToRecyclerView(rvBooks);
+        float pageWidth = adapterViewPager.getPageWidth(0);
+        int totalWidth = vpPager.getWidth();
+        Log.i("PAGER", "Page width: " + pageWidth + " Total width: " + totalWidth);
+        //int centerPadding = Math.round((totalWidth - pageWidth)/2);
+        //final LinearLayout root=(LinearLayout)findViewById(R.id.root);
+        //root.setBackgroundColor(Color.WHITE);
 
 
         // Inflate the layout for this fragment
@@ -134,11 +134,6 @@ public class EntranceFragment extends Fragment implements EventRecyclerViewAdapt
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    @Override
-    public void onItemClick(View view, int position) {
-        Toast.makeText(getContext(), "You clicked " + eventAdapter.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
     }
 
     /**

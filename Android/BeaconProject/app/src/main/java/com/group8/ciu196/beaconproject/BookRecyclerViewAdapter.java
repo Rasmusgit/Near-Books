@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
+public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerViewAdapter.ViewHolder> {
 
     private List<Integer> mViewColors;
     private List<String> mAnimals;
@@ -18,7 +18,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    MyRecyclerViewAdapter(Context context, List<Integer> colors, List<String> animals) {
+    BookRecyclerViewAdapter(Context context, List<Integer> colors, List<String> animals) {
         this.mInflater = LayoutInflater.from(context);
         this.mViewColors = colors;
         this.mAnimals = animals;
@@ -28,7 +28,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @Override
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.recyclerview_item, parent, false);
+        View view = mInflater.inflate(R.layout.recyclingview_item2, parent, false);
 
 
         return new ViewHolder(view);
@@ -40,7 +40,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         int color = mViewColors.get(position);
         String animal = mAnimals.get(position);
         holder.myView.setBackgroundColor(color);
-        holder.myTextView.setText(animal);
+        //holder.myTextView.setText(animal);
     }
 
     // total number of rows
@@ -57,7 +57,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         ViewHolder(View itemView) {
             super(itemView);
             myView = itemView.findViewById(R.id.imageView);
-            myTextView = itemView.findViewById(R.id.tvAnimalName);
+            //myTextView = itemView.findViewById(R.id.tvAnimalName);
             itemView.setOnClickListener(this);
         }
 

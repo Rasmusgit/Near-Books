@@ -4,10 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-public class MyPagerAdapter extends FragmentPagerAdapter {
+public class SwipePagerAdapter extends FragmentPagerAdapter {
     private static int NUM_ITEMS = 10;
 
-    public MyPagerAdapter(FragmentManager fragmentManager) {
+    public SwipePagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
     }
 

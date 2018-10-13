@@ -21,7 +21,7 @@
 
         <include
             android:id="@+id/recyclerview_item"
-            layout="@layout/recyclerview_item">
+            layout="@layout/swipecard_item">
 
         </include>
     </LinearLayout>
