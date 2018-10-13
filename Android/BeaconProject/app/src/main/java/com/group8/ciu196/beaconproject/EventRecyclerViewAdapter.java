@@ -1,6 +1,7 @@
 package com.group8.ciu196.beaconproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,12 +17,14 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
     private List<String> mAnimals;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    private Context context;
 
     // data is passed into the constructor
     EventRecyclerViewAdapter(Context context, List<Integer> colors, List<String> animals) {
         this.mInflater = LayoutInflater.from(context);
         this.mViewColors = colors;
         this.mAnimals = animals;
+        this.context = context;
     }
 
     // inflates the row layout from xml when needed
@@ -69,8 +72,12 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
                     483,
                     0
             );
-            resizeAnimation.setDuration(1000);
+            resizeAnimation.setDuration(250);
             view.startAnimation(resizeAnimation);
+
+            Intent intent = new Intent(view.getContext(),DetailActivity.class);
+            view.getContext().startActivity(intent);
+
         }
     }
 

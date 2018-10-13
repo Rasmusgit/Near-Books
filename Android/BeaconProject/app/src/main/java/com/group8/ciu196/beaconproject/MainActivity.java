@@ -261,7 +261,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
 
 
     public static void addFragment(FragmentManager fragmentManager, Fragment fragment, int id){
-        fragmentManager.beginTransaction().replace(id, fragment).addToBackStack(null).commit();
+        fragmentManager.beginTransaction().replace(id, fragment).addToBackStack().commit();
 
     }
 
