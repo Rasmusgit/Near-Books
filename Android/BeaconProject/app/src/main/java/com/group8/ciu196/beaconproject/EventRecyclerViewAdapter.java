@@ -7,22 +7,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
 public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecyclerViewAdapter.ViewHolder> {
 
-    private List<Integer> mViewColors;
+    private List<String> mViewImage;
     private List<String> mAnimals;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private Context context;
 
     // data is passed into the constructor
-    EventRecyclerViewAdapter(Context context, List<Integer> colors, List<String> animals) {
+    EventRecyclerViewAdapter(Context context, List<String> images, List<String> animals) {
         this.mInflater = LayoutInflater.from(context);
-        this.mViewColors = colors;
+        this.mViewImage = images;
         this.mAnimals = animals;
         this.context = context;
     }
@@ -40,9 +41,10 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
     // binds the data to the view and textview in each row
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        int color = mViewColors.get(position);
+        String image = mViewImage.get(position);
         String animal = mAnimals.get(position);
-        holder.myView.setBackgroundColor(color);
+        holder.myView.setImageResource(getImageId(this.context,image));
+        holder.myView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         holder.myTextView.setText(animal);
     }
 
@@ -54,7 +56,7 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        View myView;
+        ImageView myView;
         TextView myTextView;
 
         ViewHolder(View itemView) {
@@ -67,13 +69,6 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         @Override
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-            ResizeAnimation resizeAnimation = new ResizeAnimation(
-                    view,
-                    483,
-                    0
-            );
-            resizeAnimation.setDuration(250);
-            view.startAnimation(resizeAnimation);
 
             Intent intent = new Intent(view.getContext(),DetailActivity.class);
             view.getContext().startActivity(intent);
@@ -94,5 +89,9 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);
+    }
+
+    public static int getImageId(Context context, String imageName) {
+        return context.getResources().getIdentifier("drawable/" + imageName, null, context.getPackageName());
     }
 }

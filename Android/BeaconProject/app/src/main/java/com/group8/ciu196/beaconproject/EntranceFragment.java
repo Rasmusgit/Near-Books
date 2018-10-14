@@ -72,6 +72,20 @@ public class EntranceFragment extends Fragment implements EventRecyclerViewAdapt
         viewColors.add(Color.RED);
         viewColors.add(Color.BLACK);
 
+        ArrayList<String> viewImages = new ArrayList<>();
+        viewImages.add("event0");
+        viewImages.add("event1");
+        viewImages.add("event2");
+        viewImages.add("event3");
+        viewImages.add("event4");
+
+        ArrayList<String> viewImages2 = new ArrayList<>();
+        viewImages2.add("book0");
+        viewImages2.add("book1");
+        viewImages2.add("book2");
+        viewImages2.add("book3");
+        viewImages2.add("book4");
+
         ArrayList<String> animalNames = new ArrayList<>();
         animalNames.add("Horse");
         animalNames.add("Cow");
@@ -87,7 +101,7 @@ public class EntranceFragment extends Fragment implements EventRecyclerViewAdapt
         LinearLayoutManager horizontalLayoutManager
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvEvents.setLayoutManager(horizontalLayoutManager);
-        eventAdapter = new EventRecyclerViewAdapter(getContext(), viewColors, animalNames);
+        eventAdapter = new EventRecyclerViewAdapter(getContext(), viewImages, animalNames);
         eventAdapter.setClickListener(this);
         rvEvents.setAdapter(eventAdapter);
 
@@ -99,7 +113,7 @@ public class EntranceFragment extends Fragment implements EventRecyclerViewAdapt
         LinearLayoutManager horizontalLayoutManagerBooks
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvBooks.setLayoutManager(horizontalLayoutManagerBooks);
-        bookAdapter = new BookRecyclerViewAdapter(getContext(), viewColors, animalNames);
+        bookAdapter = new BookRecyclerViewAdapter(getContext(), viewImages2, animalNames);
         bookAdapter.setClickListener(this);
         rvBooks.setAdapter(bookAdapter);
 
@@ -155,4 +169,6 @@ public class EntranceFragment extends Fragment implements EventRecyclerViewAdapt
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
 }

@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
     private boolean blue = false;
     private final boolean ESTIMOTEMODE = false;
     private Toolbar toolbar;
-    private ShelfFragment shelfFragment;
 
 
     @Override
@@ -74,26 +73,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
         toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
-
-
-
-
-
-        shelfFragment = ShelfFragment.newInstance("","");
-
-
-
-
-        // Begin the transaction
-        /*FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        // Replace the contents of the container with the new fragment
-                ft.replace(R.id.main_placeholder, new EntranceFragment());
-        // or ft.add(R.id.your_placeholder, new FooFragment());
-        // Complete the changes added above
-        ft.commit();*/
-
-        addFragment(getSupportFragmentManager(),new EntranceFragment(), R.id.main_placeholder);
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_placeholder, EntranceFragment.newInstance("","")).commit();
 
 
         EstimoteCloudCredentials cloudCredentials =
@@ -228,6 +208,13 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
         String location = view.getTag().toString();
         // Begin the transaction
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
 
         switch (location){
@@ -238,6 +225,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                 TextView title = findViewById(R.id.location_title);
                 title.setText(R.string.architecture);
                 toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPink));
+
                 addFragment(getSupportFragmentManager(), ShelfFragment.newInstance("",""), R.id.main_placeholder);
                 break;
             case "Sci-fi":
@@ -246,6 +234,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                 TextView title2 = findViewById(R.id.location_title);
                 title2.setText(R.string.sci_fi);
                 toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPurple));
+
                 addFragment(getSupportFragmentManager(), ShelfFragment.newInstance("",""), R.id.main_placeholder);
                 break;
             case "Music":
@@ -254,6 +243,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                 TextView title3 = findViewById(R.id.location_title);
                 title3.setText(R.string.music);
                 toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorGreen));
+
 
                 addFragment(getSupportFragmentManager(), ShelfFragment.newInstance("",""), R.id.main_placeholder);
 
@@ -274,14 +264,17 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
     @Override
     public void onBackPressed()
     {
-        if(getFragmentManager().getBackStackEntryCount() > 0)
+        if(getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
-        else
-            getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorBlue));
+
+        }else {
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorBlue));
             TextView title = findViewById(R.id.location_title);
             title.setText(R.string.entrence);
             toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorBlue));
+            toolbar.setNavigationIcon(null);
             super.onBackPressed();
+        }
     }
 
 }
