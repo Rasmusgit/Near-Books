@@ -26,7 +26,7 @@
 
     <activity
         android:name=".profile.ProfileActivity"
-        android:label="@string/title_activity_profile">
+        android:parentActivityName=".MainActivity">
     </activity>
 
         <activity

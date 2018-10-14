@@ -1,5 +1,6 @@
 package com.group8.ciu196.beaconproject;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -35,6 +37,7 @@ import com.estimote.proximity_sdk.api.ProximityZone;
 import com.estimote.proximity_sdk.api.ProximityZoneBuilder;
 import com.estimote.proximity_sdk.api.ProximityZoneContext;
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper;
+import com.group8.ciu196.beaconproject.profile.ProfileActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -274,6 +277,19 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
             toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorBlue));
             toolbar.setNavigationIcon(null);
             super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.profile_button:
+                Intent intent = new Intent(this, ProfileActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

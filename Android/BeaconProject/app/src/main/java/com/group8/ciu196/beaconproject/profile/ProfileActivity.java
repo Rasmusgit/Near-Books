@@ -23,6 +23,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,7 +44,24 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+
+        Window window = this.getWindow();
+
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorBlue));
+
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left);
+        setSupportActionBar(toolbar);
+
+
         Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -59,17 +78,15 @@ public class ProfileActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("History"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        TextView profilename = (TextView) toolbar.findViewById(R.id.pname);
-        ImageView profilePic = (ImageView) toolbar2.findViewById(R.id.pp);
+        TextView profilename =  toolbar.findViewById(R.id.person_name);
+        ImageView profilePic =  toolbar2.findViewById(R.id.pp);
 
-        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(),R.drawable.settings);
-        toolbar.setOverflowIcon(drawable);
 
         profilename.setText("Bruce Wayne");
 //        profilename.setCompoundDrawablesWithIntrinsicBounds(R.drawable.picon, 0, 0, 0);
 
 //get bitmap of the image
-        Bitmap imageBitmap= BitmapFactory.decodeResource(getResources(),  R.drawable.batman);
+        Bitmap imageBitmap= BitmapFactory.decodeResource(getResources(),  R.drawable.);
         RoundedBitmapDrawable roundedBitmapDrawable= RoundedBitmapDrawableFactory.create(getResources(), imageBitmap);
 
 //setting radius
@@ -92,17 +109,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-
 
 
     }
