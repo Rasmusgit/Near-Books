@@ -2,23 +2,62 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="1">
-    <TableRow>
+    android:weightSum="4">
+
+    <TableRow
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp">
+
+
+
+
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/book7"
-            android:paddingTop="20dp"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_weight="1"
             android:paddingStart="5dp"
-            android:paddingEnd="10dp"
-            android:src="@drawable/book7"/>
+            android:paddingTop="20dp"
+            android:paddingEnd="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/book4" />
+
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/book8"
-            android:src="@drawable/book8"
-            android:paddingTop="20dp"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_weight="1"
             android:paddingStart="5dp"
-            android:paddingEnd="10dp"/>
+            android:paddingTop="20dp"
+            android:paddingEnd="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/book5" />
+
+
+        <ImageView
+            android:id="@+id/book9"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_weight="1"
+            android:paddingStart="5dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="10dp"
+            android:scaleType="centerCrop"
+            />
+
+        <ImageView
+            android:id="@+id/book3"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_weight="1"
+            android:paddingStart="5dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="5dp"
+            android:scaleType="centerCrop"
+             />
+
+
     </TableRow>
+
 </TableLayout>

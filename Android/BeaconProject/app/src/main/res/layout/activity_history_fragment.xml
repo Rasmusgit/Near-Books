@@ -2,50 +2,59 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="1">
-    <TableRow>
+    android:weightSum="4">
+
+    <TableRow
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp">
+
+
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/book9"
-            android:paddingTop="20dp"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_weight="1"
             android:paddingStart="5dp"
+            android:paddingTop="20dp"
             android:paddingEnd="10dp"
-            android:src="@drawable/book6"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/book7" />
+
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/book10"
-            android:src="@drawable/book3"
-            android:paddingTop="20dp"
+            android:id="@+id/book3"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_weight="1"
             android:paddingStart="5dp"
-            android:paddingEnd="10dp"/>
+            android:paddingTop="20dp"
+            android:paddingEnd="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/book3" />
+
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/book11"
-            android:src="@drawable/book2"
-            android:paddingTop="20dp"
+            android:id="@+id/book2"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_weight="1"
             android:paddingStart="5dp"
-            android:paddingEnd="5dp"/>
+            android:paddingTop="20dp"
+            android:paddingEnd="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/book4" />
+
+        <ImageView
+            android:id="@+id/book5"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_weight="1"
+            android:paddingStart="5dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/book5" />
+
+
     </TableRow>
 
-    <TableRow>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/book12"
-            android:src="@drawable/book5"
-            android:paddingTop="20dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/book13"
-            android:src="@drawable/book1"
-            android:paddingTop="20dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"/>
-    </TableRow>
 </TableLayout>

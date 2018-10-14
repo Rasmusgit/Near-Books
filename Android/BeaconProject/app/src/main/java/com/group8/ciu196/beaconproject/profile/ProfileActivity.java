@@ -1,5 +1,6 @@
 package com.group8.ciu196.beaconproject.profile;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -29,6 +30,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.group8.ciu196.beaconproject.R;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -79,23 +81,13 @@ public class ProfileActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         TextView profilename =  toolbar.findViewById(R.id.person_name);
-        ImageView profilePic =  toolbar2.findViewById(R.id.pp);
+        CircularImageView profilePic = (CircularImageView)findViewById(R.id.pp);
 
 
         profilename.setText("Bruce Wayne");
-//        profilename.setCompoundDrawablesWithIntrinsicBounds(R.drawable.picon, 0, 0, 0);
 
-//get bitmap of the image
-        Bitmap imageBitmap= BitmapFactory.decodeResource(getResources(),  R.drawable.);
-        RoundedBitmapDrawable roundedBitmapDrawable= RoundedBitmapDrawableFactory.create(getResources(), imageBitmap);
+        profilePic.setImageResource(getImageId(this, "batman"));
 
-//setting radius
-//      roundedBitmapDrawable.setCornerRadius(50.0f);
-        roundedBitmapDrawable.setCircular(true);
-        roundedBitmapDrawable.setAntiAlias(true);
-        profilePic.setImageDrawable(roundedBitmapDrawable);
-
-        //mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout) {
             @Override
             public void onPageSelected(int pos)
@@ -233,5 +225,8 @@ public class ProfileActivity extends AppCompatActivity {
             }
             return mFragmentManager.findFragmentByTag(tag);
         }
+    }
+    public static int getImageId(Context context, String imageName) {
+        return context.getResources().getIdentifier("drawable/" + imageName, null, context.getPackageName());
     }
 }
