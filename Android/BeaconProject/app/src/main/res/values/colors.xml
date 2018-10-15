@@ -5,4 +5,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorBackground">#F6F8FA</color>
     <color name="white">#FFFFFF</color>
+    <color name="colorBlue">#85c2e5</color>
+    <color name="colorGreen">#B8D4B5</color>
+    <color name="colorPink">#F2A5BD</color>
+    <color name="colorPurple">#54428C</color>
 </resources>

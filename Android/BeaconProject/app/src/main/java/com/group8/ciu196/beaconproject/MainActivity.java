@@ -1,11 +1,32 @@
 package com.group8.ciu196.beaconproject;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.estimote.mustard.rx_goodness.rx_requirements_wizard.Requirement;
 import com.estimote.mustard.rx_goodness.rx_requirements_wizard.RequirementsWizardFactory;
@@ -15,6 +36,8 @@ import com.estimote.proximity_sdk.api.ProximityObserverBuilder;
 import com.estimote.proximity_sdk.api.ProximityZone;
 import com.estimote.proximity_sdk.api.ProximityZoneBuilder;
 import com.estimote.proximity_sdk.api.ProximityZoneContext;
+import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper;
+import com.group8.ciu196.beaconproject.profile.ProfileActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,22 +47,37 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements EntranceFragment.OnFragmentInteractionListener, ShelfFragment.OnFragmentInteractionListener{
 
     private ProximityObserver proximityObserver;
     private boolean mint = false;
     private boolean blue = false;
     private final boolean ESTIMOTEMODE = false;
+    private Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final LinearLayout root=(LinearLayout)findViewById(R.id.root);
-        root.setBackgroundColor(Color.WHITE);
+        Window window = this.getWindow();
 
-        final TextView textView = (TextView) findViewById(R.id.textView);
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorBlue));
+
+
+        toolbar = findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_placeholder, EntranceFragment.newInstance("","")).commit();
+
 
         EstimoteCloudCredentials cloudCredentials =
                 new EstimoteCloudCredentials("library-experience-android-39o", "3ef92167fc706b44e652a4fc6af53498");
@@ -68,9 +106,9 @@ public class MainActivity extends AppCompatActivity {
                             Log.d("app", "Welcome to the library  " + event + "");
                             Log.d("app", "device id " + context.getDeviceId() + " attatchment " + context.getTag() + " Event: " + event + "Event2: " + event2);
 
-                            textView.setText("Enter beacon " + event);
+                            //textView.setText("Enter beacon " + event);
 
-                            root.setBackgroundColor(Color.parseColor("#B8D4B5"));
+                            //root.setBackgroundColor(Color.parseColor("#B8D4B5"));
                             mint = true;
 
                             return null;
@@ -81,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                         public Unit invoke(ProximityZoneContext context) {
                             Log.d("app", "Bye bye, come again!");
                             //root.setBackgroundColor(Color.WHITE);
-                            textView.setText("Exit beacon mint");
+                            //textView.setText("Exit beacon mint");
                             mint = false;
                             return null;
                         }
@@ -103,8 +141,8 @@ public class MainActivity extends AppCompatActivity {
 
                             Log.d("app", "Welcome to the books!  " + event + "");
 
-                            root.setBackgroundColor(Color.parseColor("#85c2e5"));
-                            textView.setText("Enter beacon " + event);
+                            //root.setBackgroundColor(Color.parseColor("#85c2e5"));
+                            //textView.setText("Enter beacon " + event);
                             blue = true;
 
 
@@ -116,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                         public Unit invoke(ProximityZoneContext context) {
                             Log.d("app", "Bye bye, come again!");
                             //root.setBackgroundColor(Color.WHITE);
-                            textView.setText("Exit beacon blue");
+                            //textView.setText("Exit beacon blue");
                             blue = false;
                             return null;
                         }
@@ -155,4 +193,106 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.locationbar, menu);
+        return true;
+    }
+
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    public void changeFragment(View view) {
+        String location = view.getTag().toString();
+        // Begin the transaction
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+
+        switch (location){
+            case "Architecture":
+
+                // finally change the color
+                getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPink));
+                TextView title = findViewById(R.id.location_title);
+                title.setText(R.string.architecture);
+                toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPink));
+
+                addFragment(getSupportFragmentManager(), ShelfFragment.newInstance("",""), R.id.main_placeholder);
+                break;
+            case "Sci-fi":
+                // finally change the color
+                getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPurple));
+                TextView title2 = findViewById(R.id.location_title);
+                title2.setText(R.string.sci_fi);
+                toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPurple));
+
+                addFragment(getSupportFragmentManager(), ShelfFragment.newInstance("",""), R.id.main_placeholder);
+                break;
+            case "Music":
+                // finally change the color
+                getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorGreen));
+                TextView title3 = findViewById(R.id.location_title);
+                title3.setText(R.string.music);
+                toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorGreen));
+
+
+                addFragment(getSupportFragmentManager(), ShelfFragment.newInstance("",""), R.id.main_placeholder);
+
+                break;
+        }
+    }
+
+
+
+
+    public static void addFragment(FragmentManager fragmentManager, Fragment fragment, int id){
+        fragmentManager.beginTransaction().replace(id, fragment).addToBackStack(null).commit();
+
+    }
+
+
+
+    @Override
+    public void onBackPressed()
+    {
+        if(getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+
+        }else {
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorBlue));
+            TextView title = findViewById(R.id.location_title);
+            title.setText(R.string.entrence);
+            toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorBlue));
+            toolbar.setNavigationIcon(null);
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.profile_button:
+                Intent intent = new Intent(this, ProfileActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }
+
+
