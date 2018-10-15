@@ -16,126 +16,140 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/app_bar">
+        app:layout_constraintTop_toBottomOf="@+id/app_bar"
+        tools:layout_editor_absoluteX="0dp">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="207dp"
-                android:background="@color/colorBackground"
-                android:orientation="horizontal"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/event0"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="122dp">
-
-            </ImageView>
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15dp"
-                android:text="Date"
-                android:textSize="20dp" />
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="16dp"
-                    android:text="2018-10-11"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="16dp"
-                    android:text="16.00–18.00"
-                    android:textColor="@color/colorBlue"
-                    android:textSize="20dp" />
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-
-                <Button
-                    android:id="@+id/addCalendar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="16dp"
-                    android:background="@color/colorBlue"
-                    android:text="Add to calendar"
-                    android:textColor="#ffffff"
-                    android:textSize="8dp" />
-            </RelativeLayout>
-
-
-            <TextView
-                android:id="@+id/textView110"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15dp"
-                android:text="Details"
-                android:textSize="20dp" />
-
-
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="30dp">
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="207dp"
+                    android:background="@color/colorBackground"
+                    android:orientation="horizontal"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/event0"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="122dp">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:text="Date"
+                    android:textSize="20dp" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="16dp"
+                        android:text="2018-10-11"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:text="16.00–18.00"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="20dp" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+
+                    <Button
+                        android:id="@+id/addCalendar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="16dp"
+                        android:background="@color/colorBlue"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="Add to calendar"
+                        android:textColor="#ffffff"
+                        android:textSize="11dp" />
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/textView110"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:text="Details"
+                    android:textSize="20dp" />
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30dp">
 
-                    <TextView
-                        android:id="@+id/textView7"
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Vill du veta mer om Dyslexi och vilken hjälp som finns? Träffa författare och lyssna på föreläsningar om dyslexi och språkutveckling under Dyslexidagarna.
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Vill du veta mer om Dyslexi och vilken hjälp som finns? Träffa författare och lyssna på föreläsningar om dyslexi och språkutveckling under Dyslexidagarna.
 
     Vill du veta mer om Dyslexi och vilken hjälp som finns? Träffa författare och lyssna på föreläsningar om dyslexi och språkutveckling under Dyslexidagarna." />
 
+                    </LinearLayout>
+
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:text="Related"
+                    android:textSize="20dp" />
+
+                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@+id/textFeatured">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/othersRead"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
             </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15dp"
-                android:text="Related"
-                android:textSize="20dp" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/horizontal_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:background="#fff">
-
-            </android.support.v7.widget.RecyclerView>
         </ScrollView>
     </LinearLayout>
 

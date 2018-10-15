@@ -70,7 +70,7 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
 
-            Intent intent = new Intent(view.getContext(),DetailActivity.class);
+            Intent intent = new Intent(view.getContext(),DetailEventActivity.class);
             view.getContext().startActivity(intent);
 
         }

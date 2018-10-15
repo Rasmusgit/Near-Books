@@ -28,6 +28,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/group8/ciu196/beaconproject/DetailEventActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/group8/ciu196/beaconproject/EventRecyclerViewAdapter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/group8/ciu196/beaconproject/MainActivity.java">
           <value>
             <set />
@@ -39,6 +49,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/group8/ciu196/beaconproject/profile/ProfileActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_detail.xml">
           <value>
             <set />
           </value>

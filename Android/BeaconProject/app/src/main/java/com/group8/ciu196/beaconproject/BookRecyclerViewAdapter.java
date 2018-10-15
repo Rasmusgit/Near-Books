@@ -1,6 +1,7 @@
 package com.group8.ciu196.beaconproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -70,6 +71,8 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
         @Override
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            Intent intent = new Intent(view.getContext(),DetailActivity.class);
+            view.getContext().startActivity(intent);
         }
     }
 
