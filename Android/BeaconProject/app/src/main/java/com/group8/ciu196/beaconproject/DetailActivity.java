@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,7 +15,11 @@ import android.view.WindowManager;
 
 import com.group8.ciu196.beaconproject.profile.ProfileActivity;
 
+import java.util.ArrayList;
+
 public class DetailActivity extends AppCompatActivity {
+
+    private OthersRecyclerViewAdapter othersAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,22 @@ public class DetailActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.app_bar);
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left);
         setSupportActionBar(toolbar);
+
+        RecyclerView othersRead = findViewById(R.id.othersRead);
+
+        ArrayList<String> viewImages = new ArrayList<>();
+        viewImages.add("book0");
+        viewImages.add("book1");
+        viewImages.add("book2");
+        viewImages.add("book3");
+        viewImages.add("book4");
+
+        LinearLayoutManager horizontalLayoutManager
+                = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        othersRead.setLayoutManager(horizontalLayoutManager);
+        othersAdapter = new OthersRecyclerViewAdapter(this, viewImages);
+        //othersAdapter.setClickListener(this);
+        othersRead.setAdapter(othersAdapter);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
