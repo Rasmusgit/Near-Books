@@ -69,14 +69,17 @@ public class BookManagerSingelton implements BookManager{
         String shelf = sharedPreferences.getString("SHELF", null);
         int availability = sharedPreferences.getInt("AVAILABILITY", -1);
         String isbn = sharedPreferences.getString("ISBN", null);
-        String imageSrc = sharedPreferences.getString("IMAGE", null);
+        String imageStr = sharedPreferences.getString("IMAGESTR", null);
+
 
         int position = sharedPreferences.getInt("POS", -1);
 
         if(0 > position) {
-            createBook(author, title, availability, isbn, shelf, imageSrc);
+
+            createBook(author, title, availability, isbn, shelf, imageStr);
         }else{
-            Book bookUpdate = new Book(author, title, availability,isbn,shelf,imageSrc);
+            Book bookUpdate = new Book(author, title, availability, isbn, shelf, imageStr);
+
             books.set(position, bookUpdate);
         }
 

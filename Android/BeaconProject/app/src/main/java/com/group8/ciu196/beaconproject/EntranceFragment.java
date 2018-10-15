@@ -99,6 +99,9 @@ public class EntranceFragment extends Fragment implements EventRecyclerViewAdapt
         animalNames.add("Sheep");
         animalNames.add("Goat");
 
+        BookManagerSingelton.getInstance().createBook("J.K. Rowling","Fantastic Beasts: The Crimes of Grindelwald",3, "9781408711705", "HC Engelska","book0");
+        BookManagerSingelton.getInstance().createBook("Brené Brown","Dare to Lead: Brave Work. Tough Conversations. Whole Hearts",1, "9781785042140", "HC Engelska","book1");
+
         // set up the RecyclerView
         RecyclerView rvEvents = view.findViewById(R.id.rvEvents);
         RecyclerView rvBooks = view.findViewById(R.id.rvBooks);
@@ -119,7 +122,7 @@ public class EntranceFragment extends Fragment implements EventRecyclerViewAdapt
         LinearLayoutManager horizontalLayoutManagerBooks
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvBooks.setLayoutManager(horizontalLayoutManagerBooks);
-        bookAdapter = new BookRecyclerViewAdapter(getContext(), viewImages2, animalNames);
+        bookAdapter = new BookRecyclerViewAdapter(getContext(), viewImages2);
         bookAdapter.setClickListener(this);
         rvBooks.setAdapter(bookAdapter);
 

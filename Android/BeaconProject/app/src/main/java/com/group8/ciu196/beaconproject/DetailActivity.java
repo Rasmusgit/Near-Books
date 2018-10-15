@@ -1,5 +1,6 @@
 package com.group8.ciu196.beaconproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.group8.ciu196.beaconproject.profile.ProfileActivity;
 
@@ -24,6 +27,9 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        int index = intent.getIntExtra("index",0);
+
         setContentView(R.layout.activity_detail);
 
         Window window = this.getWindow();
@@ -49,6 +55,19 @@ public class DetailActivity extends AppCompatActivity {
         viewImages.add("book2");
         viewImages.add("book3");
         viewImages.add("book4");
+
+        TextView textAuthor = findViewById(R.id.text_author);
+        textAuthor.setText(BookManagerSingelton.getInstance().getBook(index).getAuthor());
+        TextView textAvailable = findViewById(R.id.text_available);
+        textAvailable.setText(BookManagerSingelton.getInstance().getBook(index).getAvailability() + " available");
+        TextView textShelf = findViewById(R.id.text_shelf);
+        textShelf.setText(BookManagerSingelton.getInstance().getBook(index).getShelf());
+        TextView textIsbn = findViewById(R.id.text_isbn);
+        textIsbn.setText(BookManagerSingelton.getInstance().getBook(index).getIsbn());
+        TextView title = toolbar.findViewById(R.id.location_title);
+        title.setText(BookManagerSingelton.getInstance().getBook(index).getTitle());
+        ImageView cover = findViewById(R.id.image_cover);
+        cover.setImageResource(getImageId(this,BookManagerSingelton.getInstance().getBook(index).getImageStr()));
 
         LinearLayoutManager horizontalLayoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -76,5 +95,9 @@ public class DetailActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public static int getImageId(Context context, String imageName) {
+        return context.getResources().getIdentifier("drawable/" + imageName, null, context.getPackageName());
     }
 }

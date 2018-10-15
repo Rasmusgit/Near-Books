@@ -57,4 +57,8 @@ public class Book {
     public void setShelf(String course) {
         this.shelf = shelf;
     }
+
+    public String getImageStr(){
+        return image;
+    }
 }
