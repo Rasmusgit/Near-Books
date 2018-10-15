@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".DetailActivity">
 
     <LinearLayout
@@ -15,6 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:background="@color/colorBackground"
+            android:padding="20dp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="122dp">
 
@@ -40,6 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="By [author]"
+                    android:layout_marginBottom="10dp"
                     tools:layout_editor_absoluteX="169dp"
                     tools:layout_editor_absoluteY="16dp" />
 
@@ -48,6 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="[type]  | Original issue [year]"
+                    android:layout_marginBottom="10dp"
                     tools:layout_editor_absoluteX="169dp"
                     tools:layout_editor_absoluteY="49dp" />
 
@@ -64,6 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="[number in stock] available"
+                    android:layout_marginBottom="10dp"
                     tools:layout_editor_absoluteX="169dp"
                     tools:layout_editor_absoluteY="102dp" />
 
@@ -99,15 +105,14 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
+            android:padding="15dp"
             android:textSize="20dp"
             android:text="Details" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="30dp"
-            android:paddingTop="0dp"
+            android:paddingLeft="30dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -126,6 +131,7 @@
                     android:id="@+id/textView9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:text="[origin]" />
 
                 <TextView
@@ -138,6 +144,7 @@
                     android:id="@+id/textView12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:text="[id_number]" />
 
                 <TextView
@@ -169,6 +176,7 @@
                     android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:text="[shelf]" />
 
                 <TextView
@@ -181,6 +189,7 @@
                     android:id="@+id/textView16"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:text="[btj_number]" />
 
                 <TextView
@@ -200,7 +209,17 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:textSize="20dp"
             android:text="Others also read" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/horizontal_recycler_view"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+        </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 
