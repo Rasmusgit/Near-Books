@@ -2,7 +2,6 @@ package com.group8.ciu196.beaconproject;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,21 +10,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerViewAdapter.ViewHolder> {
 
     private List<String> mViewImage;
-    private List<String> mAnimals;
     private LayoutInflater mInflater;
     private BookRecyclerViewAdapter.ItemClickListener mClickListener;
     private Context context;
 
     // data is passed into the constructor
-    BookRecyclerViewAdapter(Context context, List<String> images, List<String> animals) {
+    BookRecyclerViewAdapter(Context context, List<String> images) {
         this.mInflater = LayoutInflater.from(context);
         this.mViewImage = images;
-        this.mAnimals = animals;
         this.context = context;
     }
 
@@ -53,7 +51,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
     // total number of rows
     @Override
     public int getItemCount() {
-        return mAnimals.size();
+        return BookManagerSingelton.getInstance().getAllBooks().size();
     }
 
     // stores and recycles views as they are scrolled off screen
@@ -72,13 +70,14 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
             Intent intent = new Intent(view.getContext(),DetailActivity.class);
+            intent.putExtra("index",getAdapterPosition());
             view.getContext().startActivity(intent);
         }
     }
 
     // convenience method for getting data at click position
-    public String getItem(int id) {
-        return mAnimals.get(id);
+    public Book getItem(int id) {
+        return BookManagerSingelton.getInstance().getBook(id);
     }
 
     // allows clicks events to be caught

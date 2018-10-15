@@ -36,8 +36,8 @@ public class BookManagerSingelton implements BookManager{
     }
 
     @Override
-    public Book createBook(String author, String title, int availability , String isbn, String shelf) {
-        Book book = new Book(author, title, availability, isbn, shelf);
+    public Book createBook(String author, String title, int availability , String isbn, String shelf, String imageStr) {
+        Book book = new Book(author, title, availability, isbn, shelf, imageStr);
         books.add(book);
         Log.i(TAG, "Book added");
         return book;
@@ -69,13 +69,14 @@ public class BookManagerSingelton implements BookManager{
         String shelf = sharedPreferences.getString("SHELF", null);
         int availability = sharedPreferences.getInt("AVAILABILITY", -1);
         String isbn = sharedPreferences.getString("ISBN", null);
+        String imageStr = sharedPreferences.getString("IMAGESTR", null);
 
         int position = sharedPreferences.getInt("POS", -1);
 
         if(0 > position) {
-            createBook(author, title, availability, isbn, shelf);
+            createBook(author, title, availability, isbn, shelf, imageStr);
         }else{
-            Book bookUpdate = new Book(author, title, availability,isbn,shelf);
+            Book bookUpdate = new Book(author, title, availability, isbn, shelf, imageStr);
             books.set(position, bookUpdate);
         }
 
