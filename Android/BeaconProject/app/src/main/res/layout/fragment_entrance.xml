@@ -16,7 +16,7 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -74,6 +74,8 @@
         android:layout_width="match_parent"
         android:layout_height="79dp"
         android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:weightSum="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,11 +104,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:onClick="changeFragment"
-            android:tag="@string/architecture"
             android:layout_weight="1"
             android:background="@color/colorPink"
             android:fontFamily="@font/futura_pt_book"
+            android:onClick="changeFragment"
+            android:tag="@string/architecture"
             android:text="@string/architecture"
             android:textColor="#fff">
 
@@ -117,11 +119,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:onClick="changeFragment"
-            android:tag="@string/sci_fi"
             android:layout_weight="1"
             android:background="@color/colorPurple"
             android:fontFamily="@font/futura_pt_book"
+            android:onClick="changeFragment"
+            android:tag="@string/sci_fi"
             android:text="@string/sci_fi"
             android:textColor="#fff">
 

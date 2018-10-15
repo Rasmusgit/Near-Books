@@ -12,7 +12,9 @@
             android:id="@+id/imageView"
             android:layout_width="110dp"
             android:layout_height="155dp"
-            android:elevation="8dp"/>
+            android:elevation="8dp"
+            android:background="@color/colorBlue"
+            />
 
 
 

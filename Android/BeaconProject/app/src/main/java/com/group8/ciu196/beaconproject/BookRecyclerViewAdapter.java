@@ -1,6 +1,7 @@
 package com.group8.ciu196.beaconproject;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -43,6 +44,8 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
         String image = mViewImage.get(position);
 
         holder.myView.setImageResource(getImageId(this.context,image));
+        holder.myView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
         //holder.myTextView.setText(animal);
     }
 
