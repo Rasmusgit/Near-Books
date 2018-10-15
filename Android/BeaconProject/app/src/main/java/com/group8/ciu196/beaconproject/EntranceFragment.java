@@ -79,6 +79,12 @@ public class EntranceFragment extends Fragment implements EventRecyclerViewAdapt
         viewImages.add("event3");
         viewImages.add("event4");
 
+
+        EventManager eventManager = EventManager.getInstance();
+        eventManager.addEvent("MUSIKPRODUKTION FÖR DIG 13-25 ÅR", "event0", "2018-10-18", "16.00–18.00", "Tio workshops för dig som vill skapa egen musik! Kanske blir det din nya hobby eller din framtida karriär? TV-spelsmusikkompositören Jacob Lincke lär dig allt om musikproduktion, olika genrer och hur man skapar passande musik och stämning till något visuellt som till exempel ett spel.");
+        eventManager.addEvent("DEN NYA STADEN", "event1", "2018-10-22", "12.30–12.45", "Är du nyfiken på hur centrala Göteborg kommer att utvecklas? I en serie programpunkter på Stadsbiblioteket 300m2 i Brunnsparken berättar projektledare och arkitekter från Stadsbyggnadskontoret om några spännande och aktuella stadsutvecklingsprojekt.");
+        eventManager.addEvent("START FÖR FÖRÄLDRAUTBILDNING: DYSLEXI/LÄS- OCH SKRIVSVÅRIGHETER", "event2", "2018-10-16", "18.00–20.00", "En kurs för dig som har barn med dyslexi eller läs- och skrivsvårigheter. Om hur du kan hjälpa och stödja ditt barn samt utveckla samarbetet med skolan. Ledare är specialpedagog och tal- och språkpedagog Helena Jacobsson som själv är förälder till barn med dyslexi.");
+
         ArrayList<String> viewImages2 = new ArrayList<>();
         viewImages2.add("book0");
         viewImages2.add("book1");
@@ -101,7 +107,7 @@ public class EntranceFragment extends Fragment implements EventRecyclerViewAdapt
         LinearLayoutManager horizontalLayoutManager
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvEvents.setLayoutManager(horizontalLayoutManager);
-        eventAdapter = new EventRecyclerViewAdapter(getContext(), viewImages, animalNames);
+        eventAdapter = new EventRecyclerViewAdapter(getContext(), eventManager.getAll());
         eventAdapter.setClickListener(this);
         rvEvents.setAdapter(eventAdapter);
 

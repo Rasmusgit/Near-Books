@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public interface BookManager {
     public int count();
     public Book getBook(int index);
-    public Book createBook(String author, String title, int availability , String isbn, String shelf);
+    public Book createBook(String author, String title, int availability , String isbn, String shelf, String imageStr);
     public ArrayList<Book> getAllBooks();
     public void removeBook(Book book);
     public void moveBook(int from, int to);

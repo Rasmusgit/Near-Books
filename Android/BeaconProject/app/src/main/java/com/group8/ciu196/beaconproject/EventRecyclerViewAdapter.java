@@ -14,17 +14,16 @@ import java.util.List;
 
 public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecyclerViewAdapter.ViewHolder> {
 
-    private List<String> mViewImage;
+    private List<Event> mEvents;
     private List<String> mAnimals;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private Context context;
 
     // data is passed into the constructor
-    EventRecyclerViewAdapter(Context context, List<String> images, List<String> animals) {
+    EventRecyclerViewAdapter(Context context, List<Event> events) {
         this.mInflater = LayoutInflater.from(context);
-        this.mViewImage = images;
-        this.mAnimals = animals;
+        this.mEvents = events;
         this.context = context;
     }
 
@@ -41,8 +40,8 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
     // binds the data to the view and textview in each row
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String image = mViewImage.get(position);
-        String animal = mAnimals.get(position);
+        String image = mEvents.get(position).getImage();
+        String animal = mEvents.get(position).getTitle();
         holder.myView.setImageResource(getImageId(this.context,image));
         holder.myView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         holder.myTextView.setText(animal);
@@ -51,7 +50,7 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
     // total number of rows
     @Override
     public int getItemCount() {
-        return mAnimals.size();
+        return mEvents.size();
     }
 
     // stores and recycles views as they are scrolled off screen
@@ -71,6 +70,7 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
 
             Intent intent = new Intent(view.getContext(),DetailEventActivity.class);
+            intent.putExtra("POS", this.getAdapterPosition());
             view.getContext().startActivity(intent);
 
         }
@@ -78,7 +78,7 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
 
     // convenience method for getting data at click position
     public String getItem(int id) {
-        return mAnimals.get(id);
+        return id + "";
     }
 
     // allows clicks events to be caught

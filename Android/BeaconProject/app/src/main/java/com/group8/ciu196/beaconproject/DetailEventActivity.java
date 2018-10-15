@@ -1,5 +1,6 @@
 package com.group8.ciu196.beaconproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -12,6 +13,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.group8.ciu196.beaconproject.profile.ProfileActivity;
 
@@ -25,6 +28,11 @@ public class DetailEventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
+
+        Intent intent = getIntent();
+
+        int pos = intent.getIntExtra("POS", -1);
+
 
         Window window = this.getWindow();
 
@@ -41,7 +49,28 @@ public class DetailEventActivity extends AppCompatActivity {
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left);
         setSupportActionBar(toolbar);
 
+        TextView title = toolbar.findViewById(R.id.location_title);
+
+
+
         RecyclerView othersRead = findViewById(R.id.othersRead);
+
+        EventManager eventManager = EventManager.getInstance();
+        ImageView imageView = findViewById(R.id.imgView);
+        TextView dateText = findViewById(R.id.textDate);
+        TextView timeText = findViewById(R.id.textTime);
+        TextView detailText = findViewById(R.id.textDetail);
+
+        Event event = eventManager.getAll().get(pos);
+
+        title.setText(event.getTitle());
+
+
+        imageView.setImageResource(getImageId(this, event.getImage()));
+        dateText.setText(event.getDate());
+        timeText.setText(event.getTime());
+        detailText.setText(event.getDetails());
+
 
         ArrayList<String> viewImages = new ArrayList<>();
         viewImages.add("book0");
@@ -76,5 +105,9 @@ public class DetailEventActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public static int getImageId(Context context, String imageName) {
+        return context.getResources().getIdentifier("drawable/" + imageName, null, context.getPackageName());
     }
 }
