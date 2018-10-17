@@ -72,17 +72,12 @@ public class DetailEventActivity extends AppCompatActivity {
         detailText.setText(event.getDetails());
 
 
-        ArrayList<String> viewImages = new ArrayList<>();
-        viewImages.add("book0");
-        viewImages.add("book1");
-        viewImages.add("book2");
-        viewImages.add("book3");
-        viewImages.add("book4");
+
 
         LinearLayoutManager horizontalLayoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         othersRead.setLayoutManager(horizontalLayoutManager);
-        othersAdapter = new OthersRecyclerViewAdapter(this, viewImages);
+        othersAdapter = new OthersRecyclerViewAdapter(this, BookManagerSingelton.getInstance().getAllBooks());
         //othersAdapter.setClickListener(this);
         othersRead.setAdapter(othersAdapter);
     }

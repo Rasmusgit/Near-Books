@@ -15,13 +15,13 @@ import java.util.List;
 
 public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerViewAdapter.ViewHolder> {
 
-    private List<String> mViewImage;
+    private List<Book> mViewImage;
     private LayoutInflater mInflater;
     private BookRecyclerViewAdapter.ItemClickListener mClickListener;
     private Context context;
 
     // data is passed into the constructor
-    BookRecyclerViewAdapter(Context context, List<String> images) {
+    BookRecyclerViewAdapter(Context context, List<Book> images) {
         this.mInflater = LayoutInflater.from(context);
         this.mViewImage = images;
         this.context = context;
@@ -40,7 +40,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
     // binds the data to the view and textview in each row
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String image = mViewImage.get(position);
+        String image = mViewImage.get(position).getImageStr();
 
         holder.myView.setImageResource(getImageId(this.context,image));
         holder.myView.setScaleType(ImageView.ScaleType.CENTER_CROP);

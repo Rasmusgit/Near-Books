@@ -14,15 +14,15 @@ import java.util.List;
 
 public class OthersRecyclerViewAdapter extends RecyclerView.Adapter<OthersRecyclerViewAdapter.ViewHolder> {
 
-    private List<String> mViewImage;
+    private List<Book> mViewImage;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private Context context;
 
     // data is passed into the constructor
-    OthersRecyclerViewAdapter(Context context, List<String> images) {
+    OthersRecyclerViewAdapter(Context context, List<Book> books) {
         this.mInflater = LayoutInflater.from(context);
-        this.mViewImage = images;
+        this.mViewImage = books;
         this.context = context;
     }
 
@@ -38,7 +38,7 @@ public class OthersRecyclerViewAdapter extends RecyclerView.Adapter<OthersRecycl
     // binds the data to the view and textview in each row
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String image = mViewImage.get(position);
+        String image = mViewImage.get(position).getImageStr();
         holder.myView.setImageResource(getImageId(this.context,image));
         holder.myView.setScaleType(ImageView.ScaleType.CENTER_CROP);
     }
@@ -72,7 +72,7 @@ public class OthersRecyclerViewAdapter extends RecyclerView.Adapter<OthersRecycl
     }
 
     // convenience method for getting data at click position
-    public String getItem(int id) {
+    public Book getItem(int id) {
         return mViewImage.get(id);
     }
 

@@ -49,12 +49,7 @@ public class DetailActivity extends AppCompatActivity {
 
         RecyclerView othersRead = findViewById(R.id.othersRead);
 
-        ArrayList<String> viewImages = new ArrayList<>();
-        viewImages.add("book0");
-        viewImages.add("book1");
-        viewImages.add("book2");
-        viewImages.add("book3");
-        viewImages.add("book4");
+
 
         TextView textAuthor = findViewById(R.id.text_author);
         textAuthor.setText(BookManagerSingelton.getInstance().getBook(index).getAuthor());
@@ -72,7 +67,7 @@ public class DetailActivity extends AppCompatActivity {
         LinearLayoutManager horizontalLayoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         othersRead.setLayoutManager(horizontalLayoutManager);
-        othersAdapter = new OthersRecyclerViewAdapter(this, viewImages);
+        othersAdapter = new OthersRecyclerViewAdapter(this, BookManagerSingelton.getInstance().getAllBooks());
         //othersAdapter.setClickListener(this);
         othersRead.setAdapter(othersAdapter);
     }
