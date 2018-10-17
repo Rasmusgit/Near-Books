@@ -75,7 +75,7 @@ public class ProfileActivity extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.addTab(tabLayout.newTab().setText("Interest"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Interest"));
         tabLayout.addTab(tabLayout.newTab().setText("Queue"));
         tabLayout.addTab(tabLayout.newTab().setText("History"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -185,13 +185,13 @@ public class ProfileActivity extends AppCompatActivity {
             // Return a PlaceholderFragment (defined as a static inner class below).
 //            return PlaceholderFragment.newInstance(position + 1);
             switch (position) {
+//                case 0:
+//                    InterestFragment tab1 = new InterestFragment();
+//                    return tab1;
                 case 0:
-                    InterestFragment tab1 = new InterestFragment();
-                    return tab1;
-                case 1:
                     QueueFragment tab2 = new QueueFragment();
                     return tab2;
-                case 2:
+                case 1:
                     HistoryFragment tab3 = new HistoryFragment();
                     return tab3;
                 default:
@@ -202,7 +202,7 @@ public class ProfileActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 2;
         }
 
         @Override

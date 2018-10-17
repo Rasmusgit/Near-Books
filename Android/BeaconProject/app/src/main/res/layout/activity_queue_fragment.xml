@@ -11,7 +11,7 @@
         
 
         <ImageView
-            android:id="@+id/book7"
+            android:id="@+id/book1"
             android:layout_width="88dp"
             android:layout_height="88dp"
             android:layout_weight="1"
@@ -22,7 +22,7 @@
             android:src="@drawable/book4" />
 
         <ImageView
-            android:id="@+id/book8"
+            android:id="@+id/book2"
             android:layout_width="88dp"
             android:layout_height="88dp"
             android:layout_weight="1"
@@ -34,7 +34,7 @@
 
 
         <ImageView
-            android:id="@+id/book9"
+            android:id="@+id/book3"
             android:layout_width="88dp"
             android:layout_height="88dp"
             android:layout_weight="1"
@@ -45,7 +45,7 @@
             />
 
         <ImageView
-            android:id="@+id/book3"
+            android:id="@+id/book4"
             android:layout_width="88dp"
             android:layout_height="88dp"
             android:layout_weight="1"
