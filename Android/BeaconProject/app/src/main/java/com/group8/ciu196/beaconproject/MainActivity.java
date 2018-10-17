@@ -37,6 +37,8 @@ import com.estimote.proximity_sdk.api.ProximityZone;
 import com.estimote.proximity_sdk.api.ProximityZoneBuilder;
 import com.estimote.proximity_sdk.api.ProximityZoneContext;
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.group8.ciu196.beaconproject.profile.ProfileActivity;
 
 import java.util.ArrayList;
@@ -78,24 +80,19 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
 
         getSupportFragmentManager().beginTransaction().replace(R.id.main_placeholder, EntranceFragment.newInstance("","")).commit();
 
-
-
         EventManager eventManager = EventManager.getInstance();
         eventManager.addEvent("MUSIKPRODUKTION FÖR DIG 13-25 ÅR", "event0", "2018-10-18", "16.00–18.00", "Tio workshops för dig som vill skapa egen musik! Kanske blir det din nya hobby eller din framtida karriär? TV-spelsmusikkompositören Jacob Lincke lär dig allt om musikproduktion, olika genrer och hur man skapar passande musik och stämning till något visuellt som till exempel ett spel.");
         eventManager.addEvent("DEN NYA STADEN", "event1", "2018-10-22", "12.30–12.45", "Är du nyfiken på hur centrala Göteborg kommer att utvecklas? I en serie programpunkter på Stadsbiblioteket 300m2 i Brunnsparken berättar projektledare och arkitekter från Stadsbyggnadskontoret om några spännande och aktuella stadsutvecklingsprojekt.");
         eventManager.addEvent("START FÖR FÖRÄLDRAUTBILDNING: DYSLEXI/LÄS- OCH SKRIVSVÅRIGHETER", "event2", "2018-10-16", "18.00–20.00", "En kurs för dig som har barn med dyslexi eller läs- och skrivsvårigheter. Om hur du kan hjälpa och stödja ditt barn samt utveckla samarbetet med skolan. Ledare är specialpedagog och tal- och språkpedagog Helena Jacobsson som själv är förälder till barn med dyslexi.");
 
         BookManagerSingelton bookManager = BookManagerSingelton.getInstance();
-        bookManager.createBook("J.K. Rowling","Fantastic Beasts: The Crimes of Grindelwald",3, "9781408711705", "HC Engelska","book0");
-        bookManager.getInstance().createBook("Brené Brown","Dare to Lead: Brave Work. Tough Conversations. Whole Hearts",1, "9781785042140", "HC Engelska","book1");
-
-
+        //ger.createBook("J.K. Rowling","Fantastic Beasts: The Crimes of Grindelwald",3, "9781408711705", "HC Engelska","book0");
+        //bookManager.createBook("Brené Brown","Dare to Lead: Brave Work. Tough Conversations. Whole Hearts",1, "9781785042140", "HC Engelska","book1");
 
         EstimoteCloudCredentials cloudCredentials =
                 new EstimoteCloudCredentials("library-experience-android-39o", "3ef92167fc706b44e652a4fc6af53498");
 
         if(ESTIMOTEMODE) {
-
             this.proximityObserver =
                     new ProximityObserverBuilder(getApplicationContext(), cloudCredentials)
                             .onError(new Function1<Throwable, Unit>() {
