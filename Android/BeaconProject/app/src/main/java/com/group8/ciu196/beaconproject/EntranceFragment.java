@@ -70,43 +70,8 @@ public class EntranceFragment extends Fragment implements EventRecyclerViewAdapt
         View view = inflater.inflate(R.layout.fragment_entrance, container, false);
 
 
-        // data to populate the RecyclerView with
-        ArrayList<Integer> viewColors = new ArrayList<>();
-        viewColors.add(Color.BLUE);
-        viewColors.add(Color.YELLOW);
-        viewColors.add(Color.MAGENTA);
-        viewColors.add(Color.RED);
-        viewColors.add(Color.BLACK);
-
-        ArrayList<String> viewImages = new ArrayList<>();
-        viewImages.add("event0");
-        viewImages.add("event1");
-        viewImages.add("event2");
-        viewImages.add("event3");
-        viewImages.add("event4");
-
-
         EventManager eventManager = EventManager.getInstance();
-        eventManager.addEvent("MUSIKPRODUKTION FÖR DIG 13-25 ÅR", "event0", "2018-10-18", "16.00–18.00", "Tio workshops för dig som vill skapa egen musik! Kanske blir det din nya hobby eller din framtida karriär? TV-spelsmusikkompositören Jacob Lincke lär dig allt om musikproduktion, olika genrer och hur man skapar passande musik och stämning till något visuellt som till exempel ett spel.");
-        eventManager.addEvent("DEN NYA STADEN", "event1", "2018-10-22", "12.30–12.45", "Är du nyfiken på hur centrala Göteborg kommer att utvecklas? I en serie programpunkter på Stadsbiblioteket 300m2 i Brunnsparken berättar projektledare och arkitekter från Stadsbyggnadskontoret om några spännande och aktuella stadsutvecklingsprojekt.");
-        eventManager.addEvent("START FÖR FÖRÄLDRAUTBILDNING: DYSLEXI/LÄS- OCH SKRIVSVÅRIGHETER", "event2", "2018-10-16", "18.00–20.00", "En kurs för dig som har barn med dyslexi eller läs- och skrivsvårigheter. Om hur du kan hjälpa och stödja ditt barn samt utveckla samarbetet med skolan. Ledare är specialpedagog och tal- och språkpedagog Helena Jacobsson som själv är förälder till barn med dyslexi.");
-
-        ArrayList<String> viewImages2 = new ArrayList<>();
-        viewImages2.add("book0");
-        viewImages2.add("book1");
-        viewImages2.add("book2");
-        viewImages2.add("book3");
-        viewImages2.add("book4");
-
-        ArrayList<String> animalNames = new ArrayList<>();
-        animalNames.add("Horse");
-        animalNames.add("Cow");
-        animalNames.add("Camel");
-        animalNames.add("Sheep");
-        animalNames.add("Goat");
-
-        BookManagerSingelton.getInstance().createBook("J.K. Rowling","Fantastic Beasts: The Crimes of Grindelwald",3, "9781408711705", "HC Engelska","book0");
-        BookManagerSingelton.getInstance().createBook("Brené Brown","Dare to Lead: Brave Work. Tough Conversations. Whole Hearts",1, "9781785042140", "HC Engelska","book1");
+        BookManagerSingelton bookManager = BookManagerSingelton.getInstance();
 
         // set up the RecyclerView
         RecyclerView rvEvents = view.findViewById(R.id.rvEvents);
@@ -128,7 +93,7 @@ public class EntranceFragment extends Fragment implements EventRecyclerViewAdapt
         LinearLayoutManager horizontalLayoutManagerBooks
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvBooks.setLayoutManager(horizontalLayoutManagerBooks);
-        bookAdapter = new BookRecyclerViewAdapter(getContext(), viewImages2);
+        bookAdapter = new BookRecyclerViewAdapter(getContext(), bookManager.getAllBooks());
         bookAdapter.setClickListener(this);
         rvBooks.setAdapter(bookAdapter);
 

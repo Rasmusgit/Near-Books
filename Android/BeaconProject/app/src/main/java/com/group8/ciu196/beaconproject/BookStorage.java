@@ -9,45 +9,50 @@ public class BookStorage {
     private static ArrayList<Book> books = new ArrayList<Book>();
 
     String arc = "{\n" +
-            "  \"0\": {\n" +
+            "  \"9780711239234\": {\n" +
             "    \"name\": \"Women Design: Pioneers in architecture, industrial, graphic\",\n" +
             "    \"author\": \"Libby Sellers\",\n" +
             "    \"availability\": \"1\",\n" +
             "    \"origin\": \"Sellers, Libby Author.\",\n" +
             "    \"shelf\": \"-\",\n" +
-            "    \"publication\": \"2018\"\n" +
+            "    \"publication\": \"2018\",\n" +
+            "    \"imageStr\": \"arc0\"\n" +
             "  },\n" +
-            "  \"1\": {\n" +
+            "  \"9783791382784\": {\n" +
             "    \"name\": \"New architecture London\",\n" +
             "    \"author\": \"Agnese Sanvito, Richard Schulman\",\n" +
             "    \"availability\": \"2\",\n" +
             "    \"origin\": \"-\",\n" +
             "    \"shelf\": \"Ic\",\n" +
-            "    \"publication\": \"2017\"\n" +
+            "    \"publication\": \"2017\",\n" +
+            "    \"imageStr\": \"arc1\"\n" +
             "  },\n" +
-            "  \"2\": {\n" +
+            "  \"9780500343166\": {\n" +
             "    \"name\": \"Adjaye · Africa · Architecture\",\n" +
             "    \"author\": \"David Adjaye\",\n" +
             "    \"availability\": \"1\",\n" +
             "    \"origin\": \"Adjaye, David Author.\",\n" +
             "    \"shelf\": \"Ic.6\",\n" +
-            "    \"publication\": \"2016\"\n" +
+            "    \"publication\": \"2016\",\n" +
+            "    \"imageStr\": \"arc2\"\n" +
             "  },\n" +
-            "  \"3\": {\n" +
+            "  \"9780996539326\": {\n" +
             "    \"name\": \"Sketchup & Layout for architecture: the step by step workflow of Nick Sonder\",\n" +
             "    \"author\": \"Matt Donley, Nick Sonder\",\n" +
             "    \"availability\": \"2\",\n" +
             "    \"origin\": \"Donley, Matt\",\n" +
             "    \"shelf\": \"Ic\",\n" +
-            "    \"publication\": \"2016\"\n" +
+            "    \"publication\": \"2016\",\n" +
+            "    \"imageStr\": \"arc3\"\n" +
             "  },\n" +
-            "  \"4\": {\n" +
+            "  \"9780300203547\": {\n" +
             "    \"name\": \"Romanesque architecture\",\n" +
             "    \"author\": \"Eric Fernie\",\n" +
             "    \"availability\": \"10023\",\n" +
             "    \"origin\": \"Donley, Matt\",\n" +
             "    \"shelf\": \"Ic\",\n" +
-            "    \"publication\": \"2014\"\n" +
+            "    \"publication\": \"2014\",\n" +
+            "    \"imageStr\": \"arc4\"\n" +
             "  }\n" +
             "}";
 
