@@ -2,7 +2,6 @@ package com.group8.ciu196.beaconproject;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class SwipePagerAdapter extends FragmentStatePagerAdapter {

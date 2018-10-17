@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
 
 
             final ProximityZone enterance = new ProximityZoneBuilder()
-                    .forTag("Cafeteria").inNearRange()
+                    .forTag("Entrance").inNearRange()
                     .onEnter(new Function1<ProximityZoneContext, Unit>() {
                         @Override
                         public Unit invoke(ProximityZoneContext context) {
@@ -126,8 +126,79 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                     })
                     .build();
 
-            final ProximityZone books = new ProximityZoneBuilder()
-                    .forTag("History").inNearRange()
+            final ProximityZone music = new ProximityZoneBuilder()
+                    .forTag("Music").inNearRange()
+                    .onEnter(new Function1<ProximityZoneContext, Unit>() {
+                        @Override
+                        public Unit invoke(ProximityZoneContext context) {
+                            String event = context.getAttachments().get("Book");
+
+                            Log.d("app", "device id " + context.getDeviceId() + " attatchment " + context.getTag() + " Event: " + event);
+                            //context.getAttachments().values();
+                        /*while(context.getAttachments().keySet().iterator().hasNext()){
+                            Log.d("app", context.getAttachments().keySet().iterator().next());
+                        }*/
+
+                            Log.d("app", "Welcome to the books!  " + event + "");
+
+                            //root.setBackgroundColor(Color.parseColor("#85c2e5"));
+                            //textView.setText("Enter beacon " + event);
+                            blue = true;
+
+
+                            return null;
+                        }
+                    })
+                    .onExit(new Function1<ProximityZoneContext, Unit>() {
+                        @Override
+                        public Unit invoke(ProximityZoneContext context) {
+                            Log.d("app", "Bye bye, come again!");
+                            //root.setBackgroundColor(Color.WHITE);
+                            //textView.setText("Exit beacon blue");
+                            blue = false;
+                            return null;
+                        }
+                    })
+                    .build();
+
+
+            final ProximityZone sci_fi = new ProximityZoneBuilder()
+                    .forTag("scifi").inNearRange()
+                    .onEnter(new Function1<ProximityZoneContext, Unit>() {
+                        @Override
+                        public Unit invoke(ProximityZoneContext context) {
+                            String event = context.getAttachments().get("Book");
+
+                            Log.d("app", "device id " + context.getDeviceId() + " attatchment " + context.getTag() + " Event: " + event);
+                            //context.getAttachments().values();
+                        /*while(context.getAttachments().keySet().iterator().hasNext()){
+                            Log.d("app", context.getAttachments().keySet().iterator().next());
+                        }*/
+
+                            Log.d("app", "Welcome to the books!  " + event + "");
+
+                            //root.setBackgroundColor(Color.parseColor("#85c2e5"));
+                            //textView.setText("Enter beacon " + event);
+                            blue = true;
+
+
+                            return null;
+                        }
+                    })
+                    .onExit(new Function1<ProximityZoneContext, Unit>() {
+                        @Override
+                        public Unit invoke(ProximityZoneContext context) {
+                            Log.d("app", "Bye bye, come again!");
+                            //root.setBackgroundColor(Color.WHITE);
+                            //textView.setText("Exit beacon blue");
+                            blue = false;
+                            return null;
+                        }
+                    })
+                    .build();
+
+            final ProximityZone architecture = new ProximityZoneBuilder()
+                    .forTag("Architecture").inNearRange()
                     .onEnter(new Function1<ProximityZoneContext, Unit>() {
                         @Override
                         public Unit invoke(ProximityZoneContext context) {
@@ -170,7 +241,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                                 @Override
                                 public Unit invoke() {
                                     Log.d("app", "requirements fulfilled");
-                                    proximityObserver.startObserving(enterance, books);
+                                    proximityObserver.startObserving(enterance, music, sci_fi, architecture);
                                     return null;
                                 }
                             },

@@ -1,9 +1,11 @@
 package com.group8.ciu196.beaconproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
@@ -12,9 +14,12 @@ import android.support.v7.widget.SnapHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -26,6 +31,7 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class EntranceFragment extends Fragment implements EventRecyclerViewAdapter.ItemClickListener, BookRecyclerViewAdapter.ItemClickListener{
+
 
     private EventRecyclerViewAdapter eventAdapter;
     private BookRecyclerViewAdapter bookAdapter;
@@ -178,6 +184,7 @@ public class EntranceFragment extends Fragment implements EventRecyclerViewAdapt
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 
 
 }
