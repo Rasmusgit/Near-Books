@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
 
         BookManagerSingelton bookManager = BookManagerSingelton.getInstance();
         bookManager.createBook("J.K. Rowling","Fantastic Beasts: The Crimes of Grindelwald",3, "9781408711705", "HC Engelska","book0");
-        bookManager.getInstance().createBook("Brené Brown","Dare to Lead: Brave Work. Tough Conversations. Whole Hearts",1, "9781785042140", "HC Engelska","book1");
+        bookManager.createBook("Brené Brown","Dare to Lead: Brave Work. Tough Conversations. Whole Hearts",1, "9781785042140", "HC Engelska","book1");
 
 
 
