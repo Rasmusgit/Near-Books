@@ -2,6 +2,7 @@ package com.group8.ciu196.beaconproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,19 +52,28 @@ public class DetailEventActivity extends AppCompatActivity {
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left);
         setSupportActionBar(toolbar);
 
-        TextView title = toolbar.findViewById(R.id.location_title);
+        final TextView title = toolbar.findViewById(R.id.location_title);
 
 
 
         RecyclerView othersRead = findViewById(R.id.othersRead);
 
         EventManager eventManager = EventManager.getInstance();
-        ImageView imageView = findViewById(R.id.imgView);
+        final Event event = eventManager.getAll().get(pos);
+        final ImageView imageView = findViewById(R.id.imgView);
         TextView dateText = findViewById(R.id.textDate);
         TextView timeText = findViewById(R.id.textTime);
         TextView detailText = findViewById(R.id.textDetail);
 
-        Event event = eventManager.getAll().get(pos);
+        Button addCalendar = findViewById(R.id.addCalendar);
+        addCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uriUrl = Uri.parse("https://www.google.com/calendar/render?action=TEMPLATE&text=\" + event.getTitle() + \"&dates=" + event.getDate() + "T224000Z/20140320T221500Z&details=&location=The Library&sf=true&output=xml");
+                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+                startActivity(launchBrowser);
+            }
+        });
 
         title.setText(event.getTitle());
 
