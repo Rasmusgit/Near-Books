@@ -36,8 +36,8 @@ public class BookManagerSingelton implements BookManager{
     }
 
     @Override
-    public Book createBook(String author, String title, int availability , String isbn, String shelf, String imageStr) {
-        Book book = new Book(author, title, availability, isbn, shelf, imageStr);
+    public Book createBook(String id, String name, String author, int availability , String origin, String shelf, String publication, String category, String imageStr) {
+        Book book = new Book(id, name, author, availability, origin, shelf, publication, category, imageStr);
         books.add(book);
         Log.i(TAG, "Book added");
         return book;
@@ -61,24 +61,24 @@ public class BookManagerSingelton implements BookManager{
 
     }
 
-
     @Override
     public void saveChanges(SharedPreferences sharedPreferences) {
-        String title = sharedPreferences.getString("TITLE", null);
+        String name = sharedPreferences.getString("TITLE", null);
         String author = sharedPreferences.getString("AUTHOR", null);
         String shelf = sharedPreferences.getString("SHELF", null);
         int availability = sharedPreferences.getInt("AVAILABILITY", -1);
-        String isbn = sharedPreferences.getString("ISBN", null);
+        String id = sharedPreferences.getString("ISBN", null);
         String imageStr = sharedPreferences.getString("IMAGESTR", null);
-
+        String origin = sharedPreferences.getString("ORIGIN", null);
+        String publication = sharedPreferences.getString("PUBLICATION", null);
+        String category = sharedPreferences.getString("CATEGORY", null);
 
         int position = sharedPreferences.getInt("POS", -1);
 
         if(0 > position) {
-
-            createBook(author, title, availability, isbn, shelf, imageStr);
+            createBook(id, name, author, availability, origin, shelf, publication, category, imageStr);
         }else{
-            Book bookUpdate = new Book(author, title, availability, isbn, shelf, imageStr);
+            Book bookUpdate = new Book(id, name, author, availability, origin, shelf, publication, category, imageStr);
 
             books.set(position, bookUpdate);
         }

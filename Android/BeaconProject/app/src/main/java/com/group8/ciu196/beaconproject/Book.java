@@ -8,13 +8,19 @@ public class Book {
     private String isbn;
     private String shelf;
     private String image;
+    private String origin;
+    private String publication;
+    private String category;
 
-    public Book(String author, String title, int availability , String isbn, String shelf, String imageStr) {
+    public Book(String id, String name, String author, int availability , String origin, String shelf, String publication, String category, String imageStr) {
         this.author = author;
-        this.title = title;
+        this.title = name;
         this.availability = availability;
-        this.isbn = isbn;
+        this.isbn = id;
+        this.origin = origin;
         this.shelf = shelf;
+        this.publication = publication;
+        this.category = category;
         this.image = imageStr;
     }
 
@@ -46,7 +52,7 @@ public class Book {
         this.title = title;
     }
 
-    public void setAilability(int availability ) {
+    public void setAvailability(int availability ) {
         this.availability  = availability ;
     }
 
