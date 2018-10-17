@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
         eventManager.addEvent("START FÖR FÖRÄLDRAUTBILDNING: DYSLEXI/LÄS- OCH SKRIVSVÅRIGHETER", "event2", "2018-10-16", "18.00–20.00", "En kurs för dig som har barn med dyslexi eller läs- och skrivsvårigheter. Om hur du kan hjälpa och stödja ditt barn samt utveckla samarbetet med skolan. Ledare är specialpedagog och tal- och språkpedagog Helena Jacobsson som själv är förälder till barn med dyslexi.");
 
         BookManagerSingelton bookManager = BookManagerSingelton.getInstance();
-        //ger.createBook("J.K. Rowling","Fantastic Beasts: The Crimes of Grindelwald",3, "9781408711705", "HC Engelska","book0");
+        //bookManager.createBook("J.K. Rowling","Fantastic Beasts: The Crimes of Grindelwald",3, "9781408711705", "HC Engelska","book0");
         //bookManager.createBook("Brené Brown","Dare to Lead: Brave Work. Tough Conversations. Whole Hearts",1, "9781785042140", "HC Engelska","book1");
 
         EstimoteCloudCredentials cloudCredentials =

@@ -1,6 +1,7 @@
 package com.group8.ciu196.beaconproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -78,11 +79,14 @@ public class ShelfFragment extends Fragment {
         // Attach the page change listener inside the activity
         vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
+
+
             // This method will be invoked when a new page becomes selected.
             @Override
             public void onPageSelected(int position) {
                 Toast.makeText(getContext(),
                         "Selected page position: " + position, Toast.LENGTH_SHORT).show();
+
             }
 
             // This method will be invoked when the current page is scrolled
@@ -101,14 +105,6 @@ public class ShelfFragment extends Fragment {
 
 
 
-        float pageWidth = adapterViewPager.getPageWidth(0);
-        int totalWidth = vpPager.getWidth();
-        int count = adapterViewPager.getCount();
-        Log.i("PAGER", "Page width: " + pageWidth + " Total width: " + totalWidth);
-        Log.i("PAGER", "Page count: " + count);
-        //int centerPadding = Math.round((totalWidth - pageWidth)/2);
-        //final LinearLayout root=(LinearLayout)findViewById(R.id.root);
-        //root.setBackgroundColor(Color.WHITE);
 
 
         // Inflate the layout for this fragment
