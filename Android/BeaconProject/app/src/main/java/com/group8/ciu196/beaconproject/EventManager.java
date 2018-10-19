@@ -17,8 +17,8 @@ public class EventManager {
     }
 
 
-    public boolean addEvent(String title, String imageStr, String date, String time, String detils){
-        return events.add(new Event(title, imageStr, date, time, detils));
+    public boolean addEvent(String title, String imageStr, String date, String startTime, String endTime, String detils){
+        return events.add(new Event(title, imageStr, date, startTime, endTime, detils));
     }
 
     public ArrayList<Event> getAll(){

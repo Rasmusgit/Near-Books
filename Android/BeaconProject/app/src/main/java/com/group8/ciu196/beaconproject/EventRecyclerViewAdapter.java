@@ -15,7 +15,6 @@ import java.util.List;
 public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecyclerViewAdapter.ViewHolder> {
 
     private List<Event> mEvents;
-    private List<String> mAnimals;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private Context context;
@@ -32,7 +31,6 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.recyclingview_item1, parent, false);
-
 
         return new ViewHolder(view);
     }
