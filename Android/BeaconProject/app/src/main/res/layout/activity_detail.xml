@@ -51,8 +51,10 @@
                     android:fontFamily="@font/futura_pt_book"
                     android:layout_marginBottom="10dp"
                     tools:layout_editor_absoluteX="169dp"
-                    tools:layout_editor_absoluteY="16dp" />
+                    tools:layout_editor_absoluteY="16dp"
+                    android:textSize="18dp"/>
 
+                <!--
                 <TextView
                     android:id="@+id/text_type"
                     android:layout_width="match_parent"
@@ -62,6 +64,7 @@
                     android:layout_marginBottom="10dp"
                     tools:layout_editor_absoluteX="169dp"
                     tools:layout_editor_absoluteY="49dp" />
+                -->
 
                 <TextView
                     android:id="@+id/text_type2"
@@ -90,22 +93,34 @@
                     <Button
                         android:id="@+id/button2"
                         android:layout_width="match_parent"
-                        android:layout_height="37dp"
+                        android:layout_height="24dp"
                         android:layout_weight="1"
                         android:text="Queue"
                         android:fontFamily="@font/futura_pt_book"
                         tools:layout_editor_absoluteX="169dp"
-                        tools:layout_editor_absoluteY="155dp" />
+                        tools:layout_editor_absoluteY="155dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@color/colorBlue"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:textColor="#ffffff"
+                        android:textSize="11dp"/>
 
                     <Button
                         android:id="@+id/button"
                         android:layout_width="match_parent"
-                        android:layout_height="37dp"
+                        android:layout_height="24dp"
                         android:layout_weight="1"
                         android:text="Request"
                         android:fontFamily="@font/futura_pt_book"
-                        tools:layout_editor_absoluteX="268dp"
-                        tools:layout_editor_absoluteY="155dp" />
+                        tools:layout_editor_absoluteX="169dp"
+                        tools:layout_editor_absoluteY="155dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@color/colorBlue"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:textColor="#ffffff"
+                        android:textSize="11dp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -113,10 +128,27 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_pt_book"
+            android:padding="15dp"
+            android:text="Description"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_pt_book"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="Lorem ipsum änna typ sådär liksom du vet gött å så änna. Ipsum lorem alfa beta gamma delta svea saga patricia jupiter till månen sådär bara najs." />
+
+        <TextView
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:padding="15dp"
             android:textSize="20dp"
             android:fontFamily="@font/futura_pt_book"
@@ -144,7 +176,7 @@
                     android:text="Origin" />
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/text_origin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -165,20 +197,6 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/futura_pt_book"
                     android:text="[isbn_number]" />
-
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/futura_pt_book"
-                    android:text="Marks" />
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/futura_pt_book"
-                    android:text="[marks]" />
             </LinearLayout>
 
             <LinearLayout
@@ -203,21 +221,6 @@
                     android:text="[shelf]" />
 
                 <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/futura_pt_book"
-                    android:text="BTJ number" />
-
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/futura_pt_book"
-                    android:text="[btj_number]" />
-
-                <TextView
                     android:id="@+id/textView17"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -225,7 +228,7 @@
                     android:text="Publication" />
 
                 <TextView
-                    android:id="@+id/textView18"
+                    android:id="@+id/text_publication"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/futura_pt_book"

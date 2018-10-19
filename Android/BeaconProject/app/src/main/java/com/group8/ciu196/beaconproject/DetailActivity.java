@@ -59,6 +59,10 @@ public class DetailActivity extends AppCompatActivity {
         textShelf.setText(BookManagerSingelton.getInstance().getBook(index).getShelf());
         TextView textIsbn = findViewById(R.id.text_isbn);
         textIsbn.setText(BookManagerSingelton.getInstance().getBook(index).getIsbn());
+        TextView textPublication = findViewById(R.id.text_publication);
+        textPublication.setText(BookManagerSingelton.getInstance().getBook(index).getPublication());
+        TextView textOrigin = findViewById(R.id.text_origin);
+        textOrigin.setText(BookManagerSingelton.getInstance().getBook(index).getOrigin());
         TextView title = toolbar.findViewById(R.id.location_title);
         title.setText(BookManagerSingelton.getInstance().getBook(index).getTitle());
         ImageView cover = findViewById(R.id.image_cover);
