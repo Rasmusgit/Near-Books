@@ -88,7 +88,7 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/button2"
+                        android:id="@+id/queue"
                         android:layout_width="match_parent"
                         android:layout_height="37dp"
                         android:layout_weight="1"
@@ -98,7 +98,7 @@
                         tools:layout_editor_absoluteY="155dp" />
 
                     <Button
-                        android:id="@+id/button"
+                        android:id="@+id/history"
                         android:layout_width="match_parent"
                         android:layout_height="37dp"
                         android:layout_weight="1"

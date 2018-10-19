@@ -15,6 +15,7 @@ public class BookManagerSingelton implements BookManager{
 
     private static BookManagerSingelton bookManagerInstance = null;
     private static ArrayList<Book> books = new ArrayList<Book>();
+    private static ArrayList<Book> queue = new ArrayList<Book>();
 
     public static BookManagerSingelton getInstance(){
         if(bookManagerInstance == null){
@@ -65,6 +66,14 @@ public class BookManagerSingelton implements BookManager{
         books.set(from,books.get(to));
         books.set(to,temp);
 
+    }
+
+    public ArrayList<Book> getQueue() {
+        return queue;
+    }
+    public boolean addToQueue(Book book) {
+
+        return  queue.add(book);
     }
 
     public ArrayList<Book> getBooksByCategory(String category){
