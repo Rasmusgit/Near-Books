@@ -69,7 +69,7 @@ public class DetailEventActivity extends AppCompatActivity {
         addCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri uriUrl = Uri.parse("https://www.google.com/calendar/render?action=TEMPLATE&text=\" + event.getTitle() + \"&dates=" + event.getDate() + "T224000Z/20140320T221500Z&details=&location=The Library&sf=true&output=xml");
+                Uri uriUrl = Uri.parse("https://www.google.com/calendar/render?action=TEMPLATE&text=" + event.getTitle() + "&dates=" + event.getDate() + "T" + event.getStartTime() + "00/" + event.getDate() + "T" + event.getEndTime() + "00&ctz=CET&details=&location=The Library&sf=true&output=xml");
                 Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
                 startActivity(launchBrowser);
             }
@@ -79,8 +79,8 @@ public class DetailEventActivity extends AppCompatActivity {
 
 
         imageView.setImageResource(getImageId(this, event.getImage()));
-        dateText.setText(event.getDate());
-        timeText.setText(event.getTime());
+        dateText.setText(event.getDateString());
+        timeText.setText(event.getStartTimeWithDot() + " - " + event.getEndTimeWithDot());
         detailText.setText(event.getDetails());
 
 
