@@ -87,7 +87,7 @@ public class BookStorage {
             "  \"9780316435260\": {\n" +
             "    \"name\": \"Places in the darkness\",\n" +
             "    \"author\": \"Brookmyre christopher, 1968\",\n" +
-            "    \"availability\": \"1\",\n" +
+            "    \"availability\": \"0\",\n" +
             "    \"origin\": \"Brookmyre christopher, 1968 author.\",\n" +
             "    \"shelf\": \"He\",\n" +
             "    \"publication\": \"Original issue 2017\",\n" +
@@ -97,7 +97,7 @@ public class BookStorage {
             "  \"9788499890944\": {\n" +
             "    \"name\": \"a_1984\",\n" +
             "    \"author\": \"Orwell, George\",\n" +
-            "    \"availability\": \"1 of 1\",\n" +
+            "    \"availability\": \"1\",\n" +
             "    \"origin\": \"Orwell, George 1903-1950\",\n" +
             "    \"shelf\": \"Hk Spanska\",\n" +
             "    \"publication\": \"Original issue 2013\",\n" +
@@ -148,7 +148,7 @@ public class BookStorage {
     }
 
     public String getSciFiBooks(){
-        return arc;
+        return sci;
     }
 
 

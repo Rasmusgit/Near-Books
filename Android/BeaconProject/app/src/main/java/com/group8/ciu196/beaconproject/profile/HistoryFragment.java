@@ -17,11 +17,13 @@ import com.group8.ciu196.beaconproject.R;
 import java.util.ArrayList;
 
 public class HistoryFragment extends Fragment {
+    ArrayList<ImageView> imgList;
 
     String imgname;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        imgList = new ArrayList<ImageView>();
         View rootView = inflater.inflate(R.layout.activity_history_fragment, container, false);
         BookManagerSingelton bookmanager = BookManagerSingelton.getInstance();
         ArrayList<Book> books = bookmanager.getAllBooks();

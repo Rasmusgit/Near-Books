@@ -184,6 +184,9 @@ public class ProfileActivity extends AppCompatActivity {
             // Return a PlaceholderFragment (defined as a static inner class below).
 //            return PlaceholderFragment.newInstance(position + 1);
             switch (position) {
+//                case 0:
+//                    InterestFragment tab1 = new InterestFragment();
+//                    return tab1;
                 case 0:
                     QueueFragment tab1 = new QueueFragment();
                     return tab1;
