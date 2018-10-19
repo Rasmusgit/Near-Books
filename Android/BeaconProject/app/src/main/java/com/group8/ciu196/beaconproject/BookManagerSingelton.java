@@ -43,6 +43,12 @@ public class BookManagerSingelton implements BookManager{
         return book;
     }
 
+
+    public boolean add(Book book) {
+
+        return  books.add(book);
+    }
+
     @Override
     public ArrayList<Book> getAllBooks() {
         return books;
@@ -58,6 +64,22 @@ public class BookManagerSingelton implements BookManager{
         Book temp = books.get(from);
         books.set(from,books.get(to));
         books.set(to,temp);
+
+    }
+
+    public ArrayList<Book> getBooksByCategory(String category){
+
+
+        ArrayList<Book> categoryBooks = new ArrayList<Book>();
+
+        for(int i = 0; i < books.size(); i++){
+            Log.i(TAG,"category: " + category + " the book: " + books.get(i).getCategory());
+            if(books.get(i).getCategory().equals(category)){
+                categoryBooks.add(books.get(i));
+            }
+        }
+
+        return categoryBooks;
 
     }
 

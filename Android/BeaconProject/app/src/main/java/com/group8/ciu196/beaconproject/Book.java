@@ -3,25 +3,31 @@ package com.group8.ciu196.beaconproject;
 
 public class Book {
     private String author;
-    private String title;
+    private String name;
     private int availability;
     private String isbn;
     private String shelf;
-    private String image;
+    private String imageStr;
     private String origin;
     private String publication;
     private String category;
 
+
+
     public Book(String id, String name, String author, int availability , String origin, String shelf, String publication, String category, String imageStr) {
         this.author = author;
-        this.title = name;
+        this.name = name;
         this.availability = availability;
         this.isbn = id;
         this.origin = origin;
         this.shelf = shelf;
         this.publication = publication;
         this.category = category;
-        this.image = imageStr;
+        this.imageStr = imageStr;
+    }
+
+    public Book() {
+
     }
 
     public String getAuthor() {
@@ -29,7 +35,7 @@ public class Book {
     }
 
     public String getTitle() {
-        return title;
+        return name;
     }
 
     public int getAvailability() {
@@ -49,7 +55,7 @@ public class Book {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.name = title;
     }
 
     public void setAvailability(int availability ) {
@@ -65,6 +71,34 @@ public class Book {
     }
 
     public String getImageStr(){
-        return image;
+        return imageStr;
+    }
+
+    public void setImageStr(String imageStr){
+        this.imageStr = imageStr;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+    public void setPublication(String publication) {
+        this.publication = publication;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public String getPublication() {
+        return publication;
+    }
+
+    public String getCategory() {
+        return category;
     }
 }

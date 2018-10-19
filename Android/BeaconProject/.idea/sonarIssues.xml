@@ -28,6 +28,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/group8/ciu196/beaconproject/BookFragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/group8/ciu196/beaconproject/BookList.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/group8/ciu196/beaconproject/BookManager.java">
           <value>
             <set />
@@ -39,6 +49,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/group8/ciu196/beaconproject/BookRecyclerViewAdapter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/group8/ciu196/beaconproject/BookStorage.java">
           <value>
             <set />
           </value>
@@ -84,6 +99,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/group8/ciu196/beaconproject/ShelfFragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/group8/ciu196/beaconproject/SwipePagerAdapter.java">
           <value>
             <set />
           </value>

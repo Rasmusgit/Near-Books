@@ -6,9 +6,11 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class SwipePagerAdapter extends FragmentStatePagerAdapter {
     private static int NUM_ITEMS = 5;
+    private String category;
 
-    public SwipePagerAdapter(FragmentManager fragmentManager) {
+    public SwipePagerAdapter(FragmentManager fragmentManager, String category) {
         super(fragmentManager);
+        this.category = category;
     }
 
     // Returns total number of pages
@@ -21,7 +23,7 @@ public class SwipePagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        return BookFragment.newInstance(position, "Page #" + position + 1);
+        return BookFragment.newInstance(position, category);
     }
 
     // Returns the page title for the top indicator

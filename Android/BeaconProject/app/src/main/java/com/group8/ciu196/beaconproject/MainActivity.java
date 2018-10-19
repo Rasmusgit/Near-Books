@@ -88,6 +88,11 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
         BookManagerSingelton bookManager = BookManagerSingelton.getInstance();
         //bookManager.createBook("J.K. Rowling","Fantastic Beasts: The Crimes of Grindelwald",3, "9781408711705", "HC Engelska","book0");
         //bookManager.createBook("Brené Brown","Dare to Lead: Brave Work. Tough Conversations. Whole Hearts",1, "9781785042140", "HC Engelska","book1");
+        ArrayList<Book> bookList = BookStorage.getInstance().jsonToBook();
+       for(int i = 0; i < bookList.size(); i++) {
+           bookManager.add(bookList.get(i));
+       }
+
 
         EstimoteCloudCredentials cloudCredentials =
                 new EstimoteCloudCredentials("library-experience-android-39o", "3ef92167fc706b44e652a4fc6af53498");
@@ -309,7 +314,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                 title.setText(R.string.architecture);
                 toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPink));
 
-                addFragment(getSupportFragmentManager(), ShelfFragment.newInstance("",""), R.id.main_placeholder);
+                addFragment(getSupportFragmentManager(), ShelfFragment.newInstance("Architecture"), R.id.main_placeholder);
                 break;
             case "Sci-fi":
                 // finally change the color
@@ -318,7 +323,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                 title2.setText(R.string.sci_fi);
                 toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPurple));
 
-                addFragment(getSupportFragmentManager(), ShelfFragment.newInstance("",""), R.id.main_placeholder);
+                addFragment(getSupportFragmentManager(), ShelfFragment.newInstance("Sci-fi"), R.id.main_placeholder);
                 break;
             case "Music":
                 // finally change the color
@@ -328,7 +333,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                 toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorGreen));
 
 
-                addFragment(getSupportFragmentManager(), ShelfFragment.newInstance("",""), R.id.main_placeholder);
+                addFragment(getSupportFragmentManager(), ShelfFragment.newInstance("Music"), R.id.main_placeholder);
 
                 break;
         }

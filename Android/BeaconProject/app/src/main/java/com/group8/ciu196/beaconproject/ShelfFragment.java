@@ -26,7 +26,12 @@ import android.widget.Toast;
  */
 public class ShelfFragment extends Fragment {
 
-    FragmentStatePagerAdapter adapterViewPager;
+    private FragmentStatePagerAdapter adapterViewPager;
+    private String category;
+
+    private static final String TAG = "ShelfFragment";
+
+
 
 
     private OnFragmentInteractionListener mListener;
@@ -35,18 +40,13 @@ public class ShelfFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EntranceFragment.
-     */
+
     // TODO: Rename and change types and number of parameters
-    public static ShelfFragment newInstance(String param1, String param2) {
+    public static ShelfFragment newInstance(String param) {
         ShelfFragment fragment = new ShelfFragment();
         Bundle args = new Bundle();
+        Log.i(TAG,"categoty: " + param);
+        args.putString("category", param);
         fragment.setArguments(args);
         return fragment;
     }
@@ -54,6 +54,12 @@ public class ShelfFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(getArguments() != null){
+            this.category = getArguments().getString("category");
+            Log.i(TAG,"categoty: " + category);
+        }
+
 
     }
 
@@ -65,7 +71,7 @@ public class ShelfFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_shelf, container, false);
 
-        adapterViewPager = new SwipePagerAdapter(getFragmentManager());
+        adapterViewPager = new SwipePagerAdapter(getFragmentManager(),this.category);
 
         ViewPager vpPager = view.findViewById(R.id.vpPager);
         vpPager.setClipToPadding(false);
