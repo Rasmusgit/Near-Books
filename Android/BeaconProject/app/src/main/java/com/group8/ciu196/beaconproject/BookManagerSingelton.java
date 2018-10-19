@@ -19,6 +19,12 @@ public class BookManagerSingelton implements BookManager{
     public static BookManagerSingelton getInstance(){
         if(bookManagerInstance == null){
             bookManagerInstance = new BookManagerSingelton();
+
+            ArrayList<Book> bookList = BookStorage.getInstance().jsonToBook();
+            for(int i = 0; i < bookList.size(); i++) {
+                books.add(bookList.get(i));
+            }
+
         }
 
         return  bookManagerInstance;
