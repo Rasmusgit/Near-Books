@@ -77,7 +77,7 @@ public class BookStorage {
             "  \"9780857666611\": {\n" +
             "    \"name\": \"Stars are legion\",\n" +
             "    \"author\": \"Kameron Hurley\",\n" +
-            "    \"availability\": \"3 of 3\",\n" +
+            "    \"availability\": \"3\",\n" +
             "    \"origin\": \"Hurley, Kameron aut\",\n" +
             "    \"shelf\": \"He Engelska\",\n" +
             "    \"publication\": \"Original issue 2017\",\n" +
@@ -87,7 +87,7 @@ public class BookStorage {
             "  \"9780316435260\": {\n" +
             "    \"name\": \"Places in the darkness\",\n" +
             "    \"author\": \"Brookmyre christopher, 1968\",\n" +
-            "    \"availability\": \"0 of 1\",\n" +
+            "    \"availability\": \"0\",\n" +
             "    \"origin\": \"Brookmyre christopher, 1968 author.\",\n" +
             "    \"shelf\": \"He\",\n" +
             "    \"publication\": \"Original issue 2017\",\n" +
@@ -97,7 +97,7 @@ public class BookStorage {
             "  \"9788499890944\": {\n" +
             "    \"name\": \"a_1984\",\n" +
             "    \"author\": \"Orwell, George\",\n" +
-            "    \"availability\": \"1 of 1\",\n" +
+            "    \"availability\": \"1\",\n" +
             "    \"origin\": \"Orwell, George 1903-1950\",\n" +
             "    \"shelf\": \"Hk Spanska\",\n" +
             "    \"publication\": \"Original issue 2013\",\n" +
@@ -107,7 +107,7 @@ public class BookStorage {
             "  \"9780804190145\": {\n" +
             "    \"name\": \"Ready Player One\",\n" +
             "    \"author\": \"Cline, Ernest\",\n" +
-            "    \"availability\": \"1 of 5\",\n" +
+            "    \"availability\": \"5\",\n" +
             "    \"origin\": \"Cline, Ernest\",\n" +
             "    \"shelf\": \"He Engelska\",\n" +
             "    \"publication\": \"Original issue 2018\",\n" +
@@ -117,7 +117,7 @@ public class BookStorage {
             "  \"9780553803716\": {\n" +
             "    \"name\": \"Foundation\",\n" +
             "    \"author\": \"Asimov, Isaac\",\n" +
-            "    \"availability\": \"2 of 3\",\n" +
+            "    \"availability\": \"3\",\n" +
             "    \"origin\": \"Asimov, Isaac\",\n" +
             "    \"shelf\": \"He Engelska\",\n" +
             "    \"publication\": \"Original issue 2014\",\n" +
@@ -127,7 +127,7 @@ public class BookStorage {
             "  \"9781484780787\": {\n" +
             "    \"name\": \"Leia, Princess of Alderaan\",\n" +
             "    \"author\": \"Gray, Claudia\",\n" +
-            "    \"availability\": \"2 of 2\",\n" +
+            "    \"availability\": \"2\",\n" +
             "    \"origin\": \"Gray, Claudia aut\",\n" +
             "    \"shelf\": \"He,u Engelska\",\n" +
             "    \"publication\": \"Original issue 2017\",\n" +
@@ -148,7 +148,7 @@ public class BookStorage {
     }
 
     public String getSciFiBooks(){
-        return arc;
+        return sci;
     }
 
 
