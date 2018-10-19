@@ -80,7 +80,7 @@ public class DetailEventActivity extends AppCompatActivity {
 
         imageView.setImageResource(getImageId(this, event.getImage()));
         dateText.setText(event.getDateString());
-        timeText.setText(event.getStartTimeWithDot() + " - " + event.getEndTimeWithDot());
+        timeText.setText(event.getStartTimeWithDot() + " – " + event.getEndTimeWithDot());
         detailText.setText(event.getDetails());
 
 
