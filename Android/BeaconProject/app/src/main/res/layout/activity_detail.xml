@@ -91,7 +91,7 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/button2"
+                        android:id="@+id/queue"
                         android:layout_width="match_parent"
                         android:layout_height="24dp"
                         android:layout_weight="1"
@@ -107,7 +107,7 @@
                         android:textSize="11dp"/>
 
                     <Button
-                        android:id="@+id/button"
+                        android:id="@+id/history"
                         android:layout_width="match_parent"
                         android:layout_height="24dp"
                         android:layout_weight="1"
