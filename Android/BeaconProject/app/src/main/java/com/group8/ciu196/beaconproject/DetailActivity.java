@@ -11,10 +11,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.group8.ciu196.beaconproject.profile.ProfileActivity;
 
@@ -23,12 +26,14 @@ import java.util.ArrayList;
 public class DetailActivity extends AppCompatActivity {
 
     private OthersRecyclerViewAdapter othersAdapter;
+    Button queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        int index = intent.getIntExtra("index",0);
+        final int index = intent.getIntExtra("index",0);
+        final BookManagerSingelton bookmanager = BookManagerSingelton.getInstance();
 
         setContentView(R.layout.activity_detail);
 
@@ -74,6 +79,35 @@ public class DetailActivity extends AppCompatActivity {
         othersAdapter = new OthersRecyclerViewAdapter(this, BookManagerSingelton.getInstance().getAllBooks());
         //othersAdapter.setClickListener(this);
         othersRead.setAdapter(othersAdapter);
+
+        queue = findViewById(R.id.queue);
+        ArrayList<Book>queuedbooks = bookmanager.getQueue();
+        for(int i=0;i<queuedbooks.size();i++)
+        {
+            if(queuedbooks.get(i).getIsbn()== bookmanager.getBook(index).getIsbn())
+            {
+                queue.setEnabled(false);
+            }
+        }
+
+
+        queue.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                if(bookmanager.getQueue().size()<=4)
+                {
+                    bookmanager.addToQueue(bookmanager.getBook(index));
+                    queue.setEnabled(false);
+                    Toast.makeText(DetailActivity.this, "Added to queue!",
+                            Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(DetailActivity.this, "Too many books already in queue!",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

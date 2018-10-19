@@ -18,8 +18,7 @@
             android:paddingStart="5dp"
             android:paddingTop="20dp"
             android:paddingEnd="5dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/book4" />
+            android:scaleType="centerCrop" />
 
         <ImageView
             android:id="@+id/book2"
@@ -29,8 +28,7 @@
             android:paddingStart="5dp"
             android:paddingTop="20dp"
             android:paddingEnd="5dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/book5" />
+            android:scaleType="centerCrop" />
 
 
         <ImageView
@@ -41,8 +39,7 @@
             android:paddingStart="5dp"
             android:paddingTop="20dp"
             android:paddingEnd="10dp"
-            android:scaleType="centerCrop"
-            />
+            android:scaleType="centerCrop" />
 
         <ImageView
             android:id="@+id/book4"

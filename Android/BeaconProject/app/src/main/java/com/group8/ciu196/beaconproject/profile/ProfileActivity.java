@@ -75,7 +75,6 @@ public class ProfileActivity extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-//        tabLayout.addTab(tabLayout.newTab().setText("Interest"));
         tabLayout.addTab(tabLayout.newTab().setText("Queue"));
         tabLayout.addTab(tabLayout.newTab().setText("History"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -189,11 +188,11 @@ public class ProfileActivity extends AppCompatActivity {
 //                    InterestFragment tab1 = new InterestFragment();
 //                    return tab1;
                 case 0:
-                    QueueFragment tab2 = new QueueFragment();
-                    return tab2;
+                    QueueFragment tab1 = new QueueFragment();
+                    return tab1;
                 case 1:
-                    HistoryFragment tab3 = new HistoryFragment();
-                    return tab3;
+                    HistoryFragment tab2 = new HistoryFragment();
+                    return tab2;
                 default:
                     return null;
             }
