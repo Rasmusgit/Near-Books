@@ -41,18 +41,11 @@
 
                 </ImageView>
 
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:text="Date"
-                    android:textSize="20dp" />
-
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -62,6 +55,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="16dp"
                         android:text="2018-10-11"
+                        android:fontFamily="@font/futura_pt_book"
                         android:textSize="20dp" />
 
                     <TextView
@@ -72,6 +66,7 @@
                         android:layout_marginRight="16dp"
                         android:text="16.00–18.00"
                         android:textColor="@color/colorBlue"
+                        android:fontFamily="@font/futura_pt_book"
                         android:textSize="20dp" />
                 </RelativeLayout>
 
@@ -89,6 +84,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="16dp"
                         android:background="@color/colorBlue"
+                        android:fontFamily="@font/futura_pt_book"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="Add to calendar"
@@ -104,6 +100,7 @@
                     android:layout_height="wrap_content"
                     android:padding="15dp"
                     android:text="Details"
+                    android:fontFamily="@font/futura_pt_book"
                     android:textSize="20dp" />
 
 
@@ -124,6 +121,7 @@
                             android:id="@+id/textDetail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/futura_pt_book"
                             android:text="Vill du veta mer om Dyslexi och vilken hjälp som finns? Träffa författare och lyssna på föreläsningar om dyslexi och språkutveckling under Dyslexidagarna.
 
     Vill du veta mer om Dyslexi och vilken hjälp som finns? Träffa författare och lyssna på föreläsningar om dyslexi och språkutveckling under Dyslexidagarna." />
@@ -136,12 +134,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
+                    android:fontFamily="@font/futura_pt_book"
                     android:text="Related"
                     android:textSize="20dp" />
 
                 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/futura_pt_book"
                     app:layout_constraintTop_toTopOf="@+id/textFeatured">
 
                     <android.support.v7.widget.RecyclerView

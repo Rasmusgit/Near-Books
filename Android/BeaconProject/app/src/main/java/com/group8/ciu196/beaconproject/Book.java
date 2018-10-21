@@ -12,8 +12,6 @@ public class Book {
     private String publication;
     private String category;
 
-
-
     public Book(String id, String name, String author, int availability , String origin, String shelf, String publication, String category, String imageStr) {
         this.author = author;
         this.name = name;
