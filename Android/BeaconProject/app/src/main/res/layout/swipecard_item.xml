@@ -15,7 +15,7 @@
             android:layout_height="241dp" />
 
         <TextView
-            android:id="@+id/tvAnimalName"
+            android:id="@+id/text_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="All the birds in the sky"

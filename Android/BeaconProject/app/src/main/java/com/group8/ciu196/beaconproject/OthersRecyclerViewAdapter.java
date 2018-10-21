@@ -18,12 +18,14 @@ public class OthersRecyclerViewAdapter extends RecyclerView.Adapter<OthersRecycl
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private Context context;
+    private String category;
 
     // data is passed into the constructor
-    OthersRecyclerViewAdapter(Context context, List<Book> books) {
+    OthersRecyclerViewAdapter(Context context, List<Book> books, String category) {
         this.mInflater = LayoutInflater.from(context);
         this.mViewImage = books;
         this.context = context;
+        this.category = category;
     }
 
     // inflates the row layout from xml when needed
@@ -66,6 +68,8 @@ public class OthersRecyclerViewAdapter extends RecyclerView.Adapter<OthersRecycl
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
 
             Intent intent = new Intent(view.getContext(),DetailActivity.class);
+            intent.putExtra("index",getAdapterPosition());
+            intent.putExtra("cat", category);
             view.getContext().startActivity(intent);
 
         }

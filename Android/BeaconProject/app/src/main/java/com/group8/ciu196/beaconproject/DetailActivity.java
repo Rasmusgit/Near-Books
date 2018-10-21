@@ -2,6 +2,8 @@ package com.group8.ciu196.beaconproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,6 +35,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         final int index = intent.getIntExtra("index",0);
+        final String category = intent.getStringExtra("cat");
         final BookManagerSingelton bookmanager = BookManagerSingelton.getInstance();
 
         setContentView(R.layout.activity_detail);
@@ -54,29 +57,29 @@ public class DetailActivity extends AppCompatActivity {
 
         RecyclerView othersRead = findViewById(R.id.othersRead);
 
-
+        Book book = BookManagerSingelton.getInstance().getBooksByCategory(category).get(index);
 
         TextView textAuthor = findViewById(R.id.text_author);
-        textAuthor.setText(BookManagerSingelton.getInstance().getBook(index).getAuthor());
+        textAuthor.setText(book.getAuthor());
         TextView textAvailable = findViewById(R.id.text_available);
-        textAvailable.setText(BookManagerSingelton.getInstance().getBook(index).getAvailability() + " available");
+        textAvailable.setText(book.getAvailability() + " available");
         TextView textShelf = findViewById(R.id.text_shelf);
-        textShelf.setText(BookManagerSingelton.getInstance().getBook(index).getShelf());
+        textShelf.setText(book.getShelf());
         TextView textIsbn = findViewById(R.id.text_isbn);
-        textIsbn.setText(BookManagerSingelton.getInstance().getBook(index).getIsbn());
+        textIsbn.setText(book.getIsbn());
         TextView textPublication = findViewById(R.id.text_publication);
-        textPublication.setText(BookManagerSingelton.getInstance().getBook(index).getPublication());
+        textPublication.setText(book.getPublication());
         TextView textOrigin = findViewById(R.id.text_origin);
-        textOrigin.setText(BookManagerSingelton.getInstance().getBook(index).getOrigin());
+        textOrigin.setText(book.getOrigin());
         TextView title = toolbar.findViewById(R.id.location_title);
-        title.setText(BookManagerSingelton.getInstance().getBook(index).getTitle());
+        title.setText(book.getTitle());
         ImageView cover = findViewById(R.id.image_cover);
-        cover.setImageResource(getImageId(this,BookManagerSingelton.getInstance().getBook(index).getImageStr()));
+        cover.setImageResource(getImageId(this,book.getImageStr()));
 
         LinearLayoutManager horizontalLayoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         othersRead.setLayoutManager(horizontalLayoutManager);
-        othersAdapter = new OthersRecyclerViewAdapter(this, BookManagerSingelton.getInstance().getAllBooks());
+        othersAdapter = new OthersRecyclerViewAdapter(this, BookManagerSingelton.getInstance().getBooksByCategory(book.getCategory()), category);
         //othersAdapter.setClickListener(this);
         othersRead.setAdapter(othersAdapter);
 
@@ -84,9 +87,9 @@ public class DetailActivity extends AppCompatActivity {
         ArrayList<Book>queuedbooks = bookmanager.getQueue();
         for(int i=0;i<queuedbooks.size();i++)
         {
-            if(queuedbooks.get(i).getIsbn()== bookmanager.getBook(index).getIsbn())
+            if(queuedbooks.get(i).getIsbn()== bookmanager.getBooksByCategory(category).get(index).getIsbn())
             {
-                queue.setEnabled(false);
+                queue.setBackgroundColor(0xffcccccc);
             }
         }
 
@@ -94,12 +97,25 @@ public class DetailActivity extends AppCompatActivity {
         queue.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
-                if(bookmanager.getQueue().size()<=4)
+                if(bookmanager.getQueue().size()<4)
                 {
-                    bookmanager.addToQueue(bookmanager.getBook(index));
-                    queue.setEnabled(false);
-                    Toast.makeText(DetailActivity.this, "Added to queue!",
-                            Toast.LENGTH_LONG).show();
+                    boolean isNotAdded = bookmanager.addToQueue(bookmanager.getBooksByCategory(category).get(index));
+                    //queue.setEnabled(false);
+
+                    if(!isNotAdded){
+
+                        bookmanager.removeFromQueue(bookmanager.getBooksByCategory(category).get(index));
+
+                        queue.setBackgroundResource(R.color.colorBlue);
+                        Toast.makeText(DetailActivity.this, "Removed queue!",
+                                Toast.LENGTH_LONG).show();
+                    }else{
+                        queue.setBackgroundColor(0xffcccccc);
+                        Toast.makeText(DetailActivity.this, "Added to queue!",
+                                Toast.LENGTH_LONG).show();
+                    }
+
+
                 }
                 else
                 {

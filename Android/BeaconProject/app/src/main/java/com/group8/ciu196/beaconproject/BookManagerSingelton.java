@@ -79,13 +79,30 @@ public class BookManagerSingelton implements BookManager{
     }
     public boolean addToQueue(Book book) {
 
+        for(int i=0;i<queue.size();i++)
+        {
+            if(queue.get(i).getIsbn()== book.getIsbn())
+            {
+                return false;
+            }
+        }
+
         return  queue.add(book);
+    }
+
+    public boolean removeFromQueue(Book book) {
+
+        return  queue.remove(book);
     }
 
     public ArrayList<Book> getBooksByCategory(String category){
 
 
         ArrayList<Book> categoryBooks = new ArrayList<Book>();
+
+        if(category == null || category.equals("")){
+            return getAllBooks();
+        }
 
         for(int i = 0; i < books.size(); i++){
             Log.i(TAG,"category: " + category + " the book: " + books.get(i).getCategory());

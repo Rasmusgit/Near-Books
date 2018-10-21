@@ -93,7 +93,7 @@ public class EntranceFragment extends Fragment implements EventRecyclerViewAdapt
         LinearLayoutManager horizontalLayoutManagerBooks
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvBooks.setLayoutManager(horizontalLayoutManagerBooks);
-        bookAdapter = new BookRecyclerViewAdapter(getContext(), bookManager.getAllBooks());
+        bookAdapter = new BookRecyclerViewAdapter(getContext(), bookManager.getAllBooks(), "");
         bookAdapter.setClickListener(this);
         rvBooks.setAdapter(bookAdapter);
 

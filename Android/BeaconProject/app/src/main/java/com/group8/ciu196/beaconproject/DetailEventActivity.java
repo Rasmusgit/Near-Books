@@ -89,7 +89,7 @@ public class DetailEventActivity extends AppCompatActivity {
         LinearLayoutManager horizontalLayoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         othersRead.setLayoutManager(horizontalLayoutManager);
-        othersAdapter = new OthersRecyclerViewAdapter(this, BookManagerSingelton.getInstance().getAllBooks());
+        othersAdapter = new OthersRecyclerViewAdapter(this, BookManagerSingelton.getInstance().getAllBooks(),"");
         //othersAdapter.setClickListener(this);
         othersRead.setAdapter(othersAdapter);
     }

@@ -19,12 +19,14 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
     private LayoutInflater mInflater;
     private BookRecyclerViewAdapter.ItemClickListener mClickListener;
     private Context context;
+    private String category;
 
     // data is passed into the constructor
-    BookRecyclerViewAdapter(Context context, List<Book> images) {
+    BookRecyclerViewAdapter(Context context, List<Book> images, String category) {
         this.mInflater = LayoutInflater.from(context);
         this.mViewImage = images;
         this.context = context;
+        this.category = category;
     }
 
     // inflates the row layout from xml when needed
@@ -71,6 +73,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
             Intent intent = new Intent(view.getContext(),DetailActivity.class);
             intent.putExtra("index",getAdapterPosition());
+            intent.putExtra("cat", category);
             view.getContext().startActivity(intent);
         }
     }
