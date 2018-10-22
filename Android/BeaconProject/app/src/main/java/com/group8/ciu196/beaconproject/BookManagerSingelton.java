@@ -115,6 +115,17 @@ public class BookManagerSingelton implements BookManager{
 
     }
 
+    public int getBookIndexByIsbn(String isbn){
+
+        for(int i = 0; i < books.size(); i++){
+            if(books.get(i).getIsbn().equals(isbn) ){
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     @Override
     public void saveChanges(SharedPreferences sharedPreferences) {
         String name = sharedPreferences.getString("TITLE", null);

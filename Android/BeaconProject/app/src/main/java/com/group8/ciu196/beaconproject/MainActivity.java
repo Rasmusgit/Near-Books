@@ -1,6 +1,7 @@
 package com.group8.ciu196.beaconproject;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
@@ -54,8 +55,9 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
     private ProximityObserver proximityObserver;
     private boolean mint = false;
     private boolean blue = false;
-    public final static boolean ESTIMOTEMODE = true;
+    public final static boolean ESTIMOTEMODE = false;
     private Toolbar toolbar;
+    private String location = "";
 
 
     @Override
@@ -83,7 +85,8 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
         }else{
 
             toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorNone));
-            changeLocationView("");
+            location = "";
+            changeLocationView(location);
         }
 
 
@@ -115,8 +118,8 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                             Log.d("app", "Welcome to the library  " + event + "");
                             Log.d("app", "device id " + context.getDeviceId() + " attatchment " + context.getTag() + " Event: " + event + "Event2: " + event2);
 
-                            changeLocationView("Entrance");
-
+                            location = "Entrance";
+                            changeLocationView(location);
                             //mint = true;
 
                             return null;
@@ -152,7 +155,8 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                             //root.setBackgroundColor(Color.parseColor("#85c2e5"));
                             //textView.setText("Enter beacon " + event);
                             //blue = true;
-                            changeLocationView("Music");
+                            location = "Music";
+                            changeLocationView(location);
 
                             return null;
                         }
@@ -189,7 +193,9 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                             //textView.setText("Enter beacon " + event);
                             //blue = true;
 
-                            changeLocationView("Sci-fi");
+                            location = "Sci-fi";
+                            changeLocationView(location);
+
 
 
                             return null;
@@ -226,7 +232,9 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                             //textView.setText("Enter beacon " + event);
                             //blue = true;
 
-                            changeLocationView("Architecture");
+
+                            location = "Architecture";
+                            changeLocationView(location);
 
 
                             return null;
@@ -359,30 +367,29 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
     }
 
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            changeLocationView(location);
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            changeLocationView(location);
+        }
+    }
+
+
 
 
     public static void addFragment(FragmentManager fragmentManager, Fragment fragment, int id){
-        fragmentManager.beginTransaction().replace(id, fragment).addToBackStack(null).commit();
+        fragmentManager.beginTransaction().replace(id, fragment).commit();
 
     }
 
 
 
-    @Override
-    public void onBackPressed()
-    {
-        if(getFragmentManager().getBackStackEntryCount() > 0) {
-            getFragmentManager().popBackStack();
 
-        }else {
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorBlue));
-            TextView title = findViewById(R.id.location_title);
-            title.setText(R.string.entrence);
-            toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorBlue));
-            toolbar.setNavigationIcon(null);
-            super.onBackPressed();
-        }
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

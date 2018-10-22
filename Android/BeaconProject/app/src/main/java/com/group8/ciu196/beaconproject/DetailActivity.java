@@ -62,8 +62,12 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         RecyclerView othersRead = findViewById(R.id.othersRead);
-
-        Book book = BookManagerSingelton.getInstance().getBooksByCategory(category).get(index);
+        Book book = null;
+        if(category != null) {
+            book = BookManagerSingelton.getInstance().getBooksByCategory(category).get(index);
+        }else{
+            book = BookManagerSingelton.getInstance().getQueue().get(index);
+        }
 
         switch (category){
             case"Sci-fi":
@@ -79,6 +83,8 @@ public class DetailActivity extends AppCompatActivity {
             case"Architecture":
                 window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorPink));
                 toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPink));
+                break;
+            default:
                 break;
         }
 
@@ -168,6 +174,7 @@ public class DetailActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
     public static int getImageId(Context context, String imageName) {
         return context.getResources().getIdentifier("drawable/" + imageName, null, context.getPackageName());

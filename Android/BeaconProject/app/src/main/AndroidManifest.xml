@@ -16,7 +16,7 @@
         android:supportsRtl="true"
 
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,17 +26,17 @@
 
     <activity
         android:name=".profile.ProfileActivity"
-        android:parentActivityName=".MainActivity">
+        android:parentActivityName=".MainActivity" android:screenOrientation="portrait">
     </activity>
 
         <activity
             android:name=".DetailActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity" android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".DetailEventActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity" android:screenOrientation="portrait">
         </activity>
 
     </application>

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.group8.ciu196.beaconproject.Book;
+import com.group8.ciu196.beaconproject.BookManager;
 import com.group8.ciu196.beaconproject.BookManagerSingelton;
 import com.group8.ciu196.beaconproject.DetailActivity;
 import com.group8.ciu196.beaconproject.R;
@@ -63,6 +64,7 @@ public class QueueFragment extends Fragment {
             public void onClick(View v) {
                 Intent myIntent = new Intent(getActivity(),DetailActivity.class);
                 myIntent.putExtra("index", index[0]); //Optional parameters
+                myIntent.putExtra("cat", BookManagerSingelton.getInstance().getQueue().get(0).getCategory()); //Optional parameters
                 startActivity(myIntent);
             }
         });
@@ -71,6 +73,7 @@ public class QueueFragment extends Fragment {
             public void onClick(View v) {
                 Intent myIntent = new Intent(getActivity(),DetailActivity.class);
                 myIntent.putExtra("index", index[1]); //Optional parameters
+                myIntent.putExtra("cat", BookManagerSingelton.getInstance().getQueue().get(1).getCategory()); //Optional parameters
                 startActivity(myIntent);
             }
         });
@@ -79,6 +82,7 @@ public class QueueFragment extends Fragment {
             public void onClick(View v) {
                 Intent myIntent = new Intent(getActivity(),DetailActivity.class);
                 myIntent.putExtra("index", index[2]); //Optional parameters
+                myIntent.putExtra("cat", BookManagerSingelton.getInstance().getQueue().get(2).getCategory()); //Optional parameters
                 startActivity(myIntent);
             }
         });
@@ -86,7 +90,7 @@ public class QueueFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(getActivity(),DetailActivity.class);
-                myIntent.putExtra("index", index[3]); //Optional parameters
+                myIntent.putExtra("index",  BookManagerSingelton.getInstance().getBookIndexByIsbn(BookManagerSingelton.getInstance().getQueue().get(3).getIsbn())); //Optional parameters
                 startActivity(myIntent);
             }
         });
