@@ -50,7 +50,7 @@ public class BookFragment extends Fragment {
 
         ImageView imageView = view.findViewById(R.id.imageView);
         TextView titleView = view.findViewById(R.id.text_name);
-        TextView authorVIew = view.findViewById(R.id.text_author);
+        TextView authorView = view.findViewById(R.id.text_author);
 
         Book book = bookList.get(page);
 
@@ -58,7 +58,7 @@ public class BookFragment extends Fragment {
             imageView.setImageResource(getImageId(getContext(),book.getImageStr()));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             titleView.setText(book.getTitle());
-            authorVIew.setText(book.getAuthor());
+            authorView.setText(book.getAuthor());
         }else {
             
         }
