@@ -67,8 +67,12 @@ public class EntranceFragment extends Fragment implements EventRecyclerViewAdapt
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_entrance, container, false);
-
+        View view = null;
+        if(MainActivity.ESTIMOTEMODE){
+            view = inflater.inflate(R.layout.fragment_entrance_estimote, container, false);
+        }else{
+            view = inflater.inflate(R.layout.fragment_entrance, container, false);
+        }
 
         EventManager eventManager = EventManager.getInstance();
         BookManagerSingelton bookManager = BookManagerSingelton.getInstance();

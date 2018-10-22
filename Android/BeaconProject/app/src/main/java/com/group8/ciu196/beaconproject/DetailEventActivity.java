@@ -49,7 +49,7 @@ public class DetailEventActivity extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorBlue));
 
         Toolbar toolbar = findViewById(R.id.app_bar);
-        toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left);
+        //toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left);
         setSupportActionBar(toolbar);
 
         final TextView title = toolbar.findViewById(R.id.location_title);

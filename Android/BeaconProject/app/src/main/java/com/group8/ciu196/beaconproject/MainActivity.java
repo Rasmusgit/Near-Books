@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
     private ProximityObserver proximityObserver;
     private boolean mint = false;
     private boolean blue = false;
-    private final boolean ESTIMOTEMODE = true;
+    public final static boolean ESTIMOTEMODE = true;
     private Toolbar toolbar;
 
 
@@ -71,14 +71,20 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
         // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
-        // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorBlue));
-
-
         toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_placeholder, EntranceFragment.newInstance("","")).commit();
+        if(!ESTIMOTEMODE){
+            // finally change the color
+            window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorBlue));
+            changeLocationView("Entrance");
+            //getSupportFragmentManager().beginTransaction().replace(R.id.main_placeholder, EntranceFragment.newInstance("","")).commit();
+
+        }else{
+
+            toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorNone));
+            changeLocationView("");
+        }
 
 
 
@@ -109,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                             Log.d("app", "Welcome to the library  " + event + "");
                             Log.d("app", "device id " + context.getDeviceId() + " attatchment " + context.getTag() + " Event: " + event + "Event2: " + event2);
 
-                            getSupportFragmentManager().beginTransaction().replace(R.id.main_placeholder, EntranceFragment.newInstance("","")).commit();
+                            changeLocationView("Entrance");
 
                             //mint = true;
 
@@ -202,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                     .build();
 
             final ProximityZone architecture = new ProximityZoneBuilder()
-                    .forTag("Architecture").inNearRange()
+                    .forTag("architecture").inNearRange()
                     .onEnter(new Function1<ProximityZoneContext, Unit>() {
                         @Override
                         public Unit invoke(ProximityZoneContext context) {
@@ -292,22 +298,35 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
     }
 
     public void changeLocationView(String location){
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+
+        TextView title = findViewById(R.id.location_title);
+
+        if(!ESTIMOTEMODE) {
+            toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
+        }
 
 
         switch (location){
+            case "Entrance":
+
+                // finally change the color
+                getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorBlue));
+
+                title.setText(R.string.entrence);
+                toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorBlue));
+
+                addFragment(getSupportFragmentManager(), EntranceFragment.newInstance("",""), R.id.main_placeholder);
+                break;
             case "Architecture":
 
                 // finally change the color
                 getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPink));
-                TextView title = findViewById(R.id.location_title);
                 title.setText(R.string.architecture);
                 toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPink));
 
@@ -316,8 +335,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
             case "Sci-fi":
                 // finally change the color
                 getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPurple));
-                TextView title2 = findViewById(R.id.location_title);
-                title2.setText(R.string.sci_fi);
+                title.setText(R.string.sci_fi);
                 toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPurple));
 
                 addFragment(getSupportFragmentManager(), ShelfFragment.newInstance("Sci-fi"), R.id.main_placeholder);
@@ -325,13 +343,17 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
             case "Music":
                 // finally change the color
                 getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorGreen));
-                TextView title3 = findViewById(R.id.location_title);
-                title3.setText(R.string.music);
+                title.setText(R.string.music);
                 toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorGreen));
 
 
                 addFragment(getSupportFragmentManager(), ShelfFragment.newInstance("Music"), R.id.main_placeholder);
 
+                break;
+            default:
+                getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorNone));
+                title.setText("Go to location");
+                addFragment(getSupportFragmentManager(), NoLocationFragment.newInstance("",""), R.id.main_placeholder);
                 break;
         }
     }

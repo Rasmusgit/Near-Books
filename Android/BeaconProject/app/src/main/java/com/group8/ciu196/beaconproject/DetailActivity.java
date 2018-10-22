@@ -52,7 +52,13 @@ public class DetailActivity extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorBlue));
 
         Toolbar toolbar = findViewById(R.id.app_bar);
-        toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left);
+        //toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left);
+       /* toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });*/
         setSupportActionBar(toolbar);
 
         RecyclerView othersRead = findViewById(R.id.othersRead);
