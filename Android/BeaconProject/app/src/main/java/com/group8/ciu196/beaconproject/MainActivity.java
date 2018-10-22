@@ -109,10 +109,10 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                             Log.d("app", "Welcome to the library  " + event + "");
                             Log.d("app", "device id " + context.getDeviceId() + " attatchment " + context.getTag() + " Event: " + event + "Event2: " + event2);
 
-                            //textView.setText("Enter beacon " + event);
 
-                            //root.setBackgroundColor(Color.parseColor("#B8D4B5"));
-                            mint = true;
+                            getSupportFragmentManager().beginTransaction().replace(R.id.main_placeholder, EntranceFragment.newInstance("","")).commit();
+
+                            //mint = true;
 
                             return null;
                         }
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                             Log.d("app", "Bye bye, come again!");
                             //root.setBackgroundColor(Color.WHITE);
                             //textView.setText("Exit beacon mint");
-                            mint = false;
+                            //mint = false;
                             return null;
                         }
                     })
@@ -146,8 +146,8 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
 
                             //root.setBackgroundColor(Color.parseColor("#85c2e5"));
                             //textView.setText("Enter beacon " + event);
-                            blue = true;
-
+                            //blue = true;
+                            changeLocationView("Music");
 
                             return null;
                         }
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                             Log.d("app", "Bye bye, come again!");
                             //root.setBackgroundColor(Color.WHITE);
                             //textView.setText("Exit beacon blue");
-                            blue = false;
+                            //blue = false;
                             return null;
                         }
                     })
@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
 
 
             final ProximityZone sci_fi = new ProximityZoneBuilder()
-                    .forTag("scifi").inNearRange()
+                    .forTag("Sci-fi").inNearRange()
                     .onEnter(new Function1<ProximityZoneContext, Unit>() {
                         @Override
                         public Unit invoke(ProximityZoneContext context) {
@@ -182,7 +182,9 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
 
                             //root.setBackgroundColor(Color.parseColor("#85c2e5"));
                             //textView.setText("Enter beacon " + event);
-                            blue = true;
+                            //blue = true;
+
+                            changeLocationView("Sci-fi");
 
 
                             return null;
@@ -194,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                             Log.d("app", "Bye bye, come again!");
                             //root.setBackgroundColor(Color.WHITE);
                             //textView.setText("Exit beacon blue");
-                            blue = false;
+                            //blue = false;
                             return null;
                         }
                     })
@@ -217,7 +219,9 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
 
                             //root.setBackgroundColor(Color.parseColor("#85c2e5"));
                             //textView.setText("Enter beacon " + event);
-                            blue = true;
+                            //blue = true;
+
+                            changeLocationView("Architecture");
 
 
                             return null;
@@ -229,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                             Log.d("app", "Bye bye, come again!");
                             //root.setBackgroundColor(Color.WHITE);
                             //textView.setText("Exit beacon blue");
-                            blue = false;
+                            //blue = false;
                             return null;
                         }
                     })
@@ -284,6 +288,11 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
     public void changeFragment(View view) {
         String location = view.getTag().toString();
         // Begin the transaction
+        changeLocationView(location);
+
+    }
+
+    public void changeLocationView(String location){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

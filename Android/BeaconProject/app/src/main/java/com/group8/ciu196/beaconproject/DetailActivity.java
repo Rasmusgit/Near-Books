@@ -59,6 +59,23 @@ public class DetailActivity extends AppCompatActivity {
 
         Book book = BookManagerSingelton.getInstance().getBooksByCategory(category).get(index);
 
+        switch (category){
+            case"Sci-fi":
+                // finally change the color
+                window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorPurple));
+                toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPurple));
+                break;
+            case"Music":
+                window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorGreen));
+                toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorGreen));
+
+                break;
+            case"Architecture":
+                window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorPink));
+                toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPink));
+                break;
+        }
+
         TextView textAuthor = findViewById(R.id.text_author);
         textAuthor.setText(book.getAuthor());
         TextView textAvailable = findViewById(R.id.text_available);
