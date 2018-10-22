@@ -1,28 +1,16 @@
 package com.group8.ciu196.beaconproject;
 
 
-import android.content.res.Resources;
-
-import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class BookStorage {
-    private static final String TAG = "BookStorage";
 
+    private static final String TAG = "BookStorage";
     private static BookStorage bookStorageInstance = null;
     private static ArrayList<Book> books = new ArrayList<Book>();
-
 
 
     String arc = "{\n" +
@@ -95,7 +83,7 @@ public class BookStorage {
             "    \"img\": \"darkness\"\n" +
             "  },\n" +
             "  \"9788499890944\": {\n" +
-            "    \"name\": \"a_1984\",\n" +
+            "    \"name\": \"1984\",\n" +
             "    \"author\": \"Orwell, George\",\n" +
             "    \"availability\": \"1\",\n" +
             "    \"origin\": \"Orwell, George 1903-1950\",\n" +
@@ -136,6 +124,70 @@ public class BookStorage {
             "  }\n" +
             "}";
 
+
+    String music = "{\n" +
+            "  \"8780857666611\": {\n" +
+            "    \"name\": \"Phantom Pop\",\n" +
+            "    \"author\": \"Wild Party\n\",\n" +
+            "    \"availability\": \"3\",\n" +
+            "    \"origin\": \"Fearless Records\",\n" +
+            "    \"shelf\": \"He Engelska\",\n" +
+            "    \"publication\": \"7 oktober 2014\",\n" +
+            "    \"description\": \"Indie/Alternativ\",\n" +
+            "    \"img\": \"phantompop\"\n" +
+            "  },\n" +
+            "  \"8780316435260\": {\n" +
+            "    \"name\": \"Pine Trails\",\n" +
+            "    \"author\": \"Satellite Stories\",\n" +
+            "    \"availability\": \"0\",\n" +
+            "    \"origin\": \"Cargo Records\",\n" +
+            "    \"shelf\": \"He\",\n" +
+            "    \"publication\": \"1 november 2013\",\n" +
+            "    \"Description\": \"Indie/Alternativ\",\n" +
+            "    \"img\": \"pinetrails\"\n" +
+            "  },\n" +
+            "  \"8788499890944\": {\n" +
+            "    \"name\": \"The Visitors\",\n" +
+            "    \"author\": \"Abba\",\n" +
+            "    \"availability\": \"1\",\n" +
+            "    \"origin\": \"Benny Andersson, Björn Ulvaeus\",\n" +
+            "    \"shelf\": \"Hk Spanska\",\n" +
+            "    \"publication\": \"30 november 1981\",\n" +
+            "    \"Description\": \"The Visitors är det åttonde och sista studioalbumet av den svenska popgruppen ABBA och släppes den 30 november 1981. Mindre än ett år senare spelade de in sin sista gemensamma sång. Albumet producerades av Benny Andersson och Björn Ulvaeus, som även skrev samtliga sånger på albumet. Albumet släpptes 1982 även på CD\",\n" +
+            "    \"img\": \"thevisitors\"\n" +
+            "  },\n" +
+            "  \"8780804190145\": {\n" +
+            "    \"name\": \"Achter Tag\",\n" +
+            "    \"author\": \"Genetikk\",\n" +
+            "    \"availability\": \"5\",\n" +
+            "    \"origin\": \"Selfmade Records\",\n" +
+            "    \"shelf\": \"He Engelska\",\n" +
+            "    \"publication\": \"24 april 2015\",\n" +
+            "    \"Description\": \"Hiphop/rap\",\n" +
+            "    \"img\": \"achtertag\"\n" +
+            "  },\n" +
+            "  \"8780553803716\": {\n" +
+            "    \"name\": \"In Search of Elusive Little Comets\",\n" +
+            "    \"author\": \"Little Comets\",\n" +
+            "    \"availability\": \"3\",\n" +
+            "    \"origin\": \"Michael Coles\",\n" +
+            "    \"shelf\": \"He Engelska\",\n" +
+            "    \"publication\": \"31 januari 2011\",\n" +
+            "    \"Description\": \"But when Wade stumbles upon the first clue, he finds himself beset by players willing to kill to take this ultimate prize. The race is on, and if Wade's going to survive, he'll have to win—and confront the real world he's always been so desperate to escape.\\\\nBut soon the fledgling Foundation finds itself at the mercy of corrupt warlords rising in the wake of the receding Empire. And mankind’s last best hope is faced with an agonizing choice: submit to the barbarians and live as slaves—or take a stand for freedom and risk total destruction.\",\n" +
+            "    \"img\": \"insearchofelusivelittlecomets\"\n" +
+            "  },\n" +
+            "  \"8781484780787\": {\n" +
+            "    \"name\": \"You Haunt Me\",\n" +
+            "    \"author\": \"Sir Sly\",\n" +
+            "    \"availability\": \"2\",\n" +
+            "    \"origin\": \"Cherrytree/Interscope Records\",\n" +
+            "    \"shelf\": \"He,u Engelska\",\n" +
+            "    \"publication\": \"16 september 2014\",\n" +
+            "    \"Description\": \"Indiepop, Trance\",\n" +
+            "    \"img\": \"youhauntme\"\n" +
+            "  }\n" +
+            "}";
+
     public static BookStorage getInstance(){
         if(bookStorageInstance == null){
             bookStorageInstance = new BookStorage();
@@ -149,6 +201,10 @@ public class BookStorage {
 
     public String getSciFiBooks(){
         return sci;
+    }
+
+    public String getMusic(){
+        return music;
     }
 
 
@@ -203,6 +259,30 @@ public class BookStorage {
 
 
                 books.add(new Book(isbn, title, author,availability,origin,shelf,publication,"Sci-fi",imageStr));
+
+            }
+
+
+            JSONObject jObjMusic = new JSONObject(getMusic());
+            Iterator<String> namesMusic = jObjMusic.keys();
+
+            while (namesMusic.hasNext()) {
+
+
+                String isbn = namesMusic.next();
+                String jItem = jObjMusic.getString(isbn);
+                JSONObject k2 = new JSONObject(jItem);
+
+                String title = k2.getString("name");
+                String author = k2.getString("author");
+                int availability = Integer.parseInt(k2.getString("availability"));
+                String shelf = k2.getString("shelf");
+                String origin = k2.getString("origin");
+                String publication = k2.getString("publication");
+                String imageStr = k2.getString("img");
+
+
+                books.add(new Book(isbn, title, author,availability,origin,shelf,publication,"Music",imageStr));
 
             }
 

@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
     private ProximityObserver proximityObserver;
     private boolean mint = false;
     private boolean blue = false;
-    private final boolean ESTIMOTEMODE = false;
+    private final boolean ESTIMOTEMODE = true;
     private Toolbar toolbar;
 
 
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
 
 
             final ProximityZone enterance = new ProximityZoneBuilder()
-                    .forTag("Entrance").inNearRange()
+                    .forTag("entrance").inNearRange()
                     .onEnter(new Function1<ProximityZoneContext, Unit>() {
                         @Override
                         public Unit invoke(ProximityZoneContext context) {
@@ -108,7 +108,6 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
 
                             Log.d("app", "Welcome to the library  " + event + "");
                             Log.d("app", "device id " + context.getDeviceId() + " attatchment " + context.getTag() + " Event: " + event + "Event2: " + event2);
-
 
                             getSupportFragmentManager().beginTransaction().replace(R.id.main_placeholder, EntranceFragment.newInstance("","")).commit();
 
@@ -130,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
                     .build();
 
             final ProximityZone music = new ProximityZoneBuilder()
-                    .forTag("Music").inNearRange()
+                    .forTag("music").inNearRange()
                     .onEnter(new Function1<ProximityZoneContext, Unit>() {
                         @Override
                         public Unit invoke(ProximityZoneContext context) {
@@ -166,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements EntranceFragment.
 
 
             final ProximityZone sci_fi = new ProximityZoneBuilder()
-                    .forTag("Sci-fi").inNearRange()
+                    .forTag("sci-fi").inNearRange()
                     .onEnter(new Function1<ProximityZoneContext, Unit>() {
                         @Override
                         public Unit invoke(ProximityZoneContext context) {
