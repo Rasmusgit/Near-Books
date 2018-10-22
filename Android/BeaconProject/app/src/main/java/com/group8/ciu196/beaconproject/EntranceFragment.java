@@ -136,7 +136,7 @@ public class EntranceFragment extends Fragment implements EventRecyclerViewAdapt
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getContext(), "You clicked " + eventAdapter.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "You clicked " + eventAdapter.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
     }
 
     /**

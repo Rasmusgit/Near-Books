@@ -82,10 +82,9 @@ public class ProfileActivity extends AppCompatActivity {
         TextView profilename =  toolbar.findViewById(R.id.person_name);
         CircularImageView profilePic = (CircularImageView)findViewById(R.id.pp);
 
+        profilename.setText("Daniel Ahlqvist");
 
-        profilename.setText("Bruce Wayne");
-
-        profilePic.setImageResource(getImageId(this, "batman"));
+        profilePic.setImageResource(getImageId(this, "daniel"));
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout) {
             @Override
