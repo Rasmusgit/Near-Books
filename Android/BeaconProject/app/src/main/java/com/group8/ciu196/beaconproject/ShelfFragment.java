@@ -90,8 +90,8 @@ public class ShelfFragment extends Fragment {
             // This method will be invoked when a new page becomes selected.
             @Override
             public void onPageSelected(int position) {
-                Toast.makeText(getContext(),
-                        "Selected page position: " + position, Toast.LENGTH_SHORT).show();
+                /*Toast.makeText(getContext(),
+                        "Selected page position: " + position, Toast.LENGTH_SHORT).show();*/
 
             }
 
