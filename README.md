@@ -1,4 +1,4 @@
-# CIU196-Mobile-computing
+# Near Books
 ## Overview of the app
 
 ### Entrance View
