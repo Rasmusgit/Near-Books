@@ -19,5 +19,5 @@
 ### Architecture View
 ![Architecture View](https://user-images.githubusercontent.com/7567156/67620835-77d09d80-f80b-11e9-9153-f5ab4684e7e0.png)
 
-### Book Detail View
+### Event Detail View
 ![Book Detail Opt](https://user-images.githubusercontent.com/7567156/67620836-77d09d80-f80b-11e9-9cf0-7a67087676c6.png)
