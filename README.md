@@ -1,4 +1,17 @@
 # Near Books
+An app using beacons to guide you through content within libraries.
+
+## Related work
+* Integrate Beacon Technology into Library Information Services (Liu and Hsu, 2018)
+* Experiences with using iBeacons for Indoor Positioning (Deepesh et. al, 2016)
+* Sending messages to the library visitor (Eng, 2015)
+* It has also been used in:
+  - Retail
+  - Museums
+  - Workplaces
+
+
+
 ## Overview of the app
 
 ### Entrance View
